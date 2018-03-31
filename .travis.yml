@@ -1,8 +1,11 @@
+notifications:
+  email: false
 language: python
 python:
   - "3.6"
 # command to install dependencies
-install: "pip install -r requirements.txt"
+install:
+  - pip install requests pycrypto
 # command to run tests
 script:
   - python3 main.py || python3 main.py
