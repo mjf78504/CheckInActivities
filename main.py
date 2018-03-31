@@ -51,6 +51,7 @@ def smzdmCheckin():
     content_SMZDM = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + 'SMZDM签到：\n' + content_SMZDM
     return content_SMZDM
 
+
 if __name__=='__main__':
     try:
         date = time.strftime("%Y-%m-%d", time.localtime())
@@ -72,7 +73,7 @@ if __name__=='__main__':
         mailtitle = date + ' 自动签到任务出错'
         mailcontent = '签到异常，请查看travis-ci log\n' + str(e)
         exitCode = 1
-        
+
 
     # 发送邮件
     SendEmail.send_mail(mailtitle, mailcontent)
