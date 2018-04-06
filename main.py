@@ -18,8 +18,13 @@ mobilepwd = os.getenv('unicom_pwd')
 def unicomCheckin():
     unicom = ChinaUnicomApp()
     loginFlag, loginContent = unicom.login_CU(mobile, mobilepwd)
-    signininFlag, signinContent = unicom.signin_CU()
-    mailcontent_CU = loginContent + signinContent + '\n\n'
+    if loginFlag == 1:
+        _, signinContent = unicom.signin_CU()
+        _, woTreeContent = unicom.woTree()
+
+    else:
+        signinContent, woTreeContent = '  '
+    mailcontent_CU = loginContent + signinContent + woTreeContent + '\n\n'
     return mailcontent_CU
 
 if __name__=='__main__':
