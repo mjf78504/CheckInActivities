@@ -62,7 +62,7 @@ class ChinaUnicomApp:
 
         login_url = 'http://m.client.10010.com/mobileService/login.htm'
         # Host 请求尝试次数
-        n = 2
+        n = 3
         while n:
             try:
                 login_req = self.session.post(login_url, headers=self.headers, data=self.data)
