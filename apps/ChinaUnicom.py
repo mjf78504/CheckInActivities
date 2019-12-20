@@ -117,7 +117,7 @@ class ChinaUnicomApp:
                 'reqChannel': 'quickNews',
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
-            like_req = self.session.post(url=glike_url, data=like_data)
+            like_req = self.session.post(url=like_url, data=like_data)
             desc = like_req.json()#['desc']
             print(desc)
             # 获取签到历史
