@@ -109,6 +109,17 @@ class ChinaUnicomApp:
             gold_url = 'http://act.10010.com/SigninApp/signin/goldTotal.do'
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
+            # 点赞获取金币
+            like_url = 'https://m.client.10010.com/commentSystem/csPraise'
+            like_data = {
+                'pointChannel': '01',
+                'pointType': '01',
+                'reqChannel': 'quickNews',
+                'reqId': '35955a274f7e40f587af629e71a0f9a4',
+            }
+            like_req = self.session.post(url=glike_url, data=like_data)
+            desc = like_req.json()#['desc']
+            print(desc)
             # 获取签到历史
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
