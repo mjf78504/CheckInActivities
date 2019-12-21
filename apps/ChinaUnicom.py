@@ -111,7 +111,7 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             # 获取执行前成长值
             growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
-            growth_req = self.session.post(url=oldgrowth_url)
+            growth_req = self.session.post(url=growth_url)
             oldgrowthV = growth_req.json()#['growthV']
             # 点赞获取成长值
             like_url = 'https://m.client.10010.com/commentSystem/csPraise'
