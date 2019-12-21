@@ -156,6 +156,7 @@ class ChinaUnicomApp:
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
+            print('---成长值记录情况---')
             print('执行前成长值' + oldgrowthV)
             print('执行后成长值' + nowgrowthV)
             # 获取签到历史
