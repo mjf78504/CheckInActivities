@@ -125,7 +125,7 @@ class ChinaUnicomApp:
             for i in range(1,4):
                 like_req = self.session.post(url=like_url, data=like_data)
                 likestatus = like_req.json()
-                print(likestatus['desc'] + '[' + i + ']')
+                print(likestatus['desc'])
             # 评论获取成长值
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
             reply_data = {
@@ -142,7 +142,7 @@ class ChinaUnicomApp:
             for i in range(1,4):
                 reply_req = self.session.post(url=reply_url, data=reply_data)
                 replystatus = reply_req.json()
-                print(replystatus['desc'] + '[' + i + ']')
+                print(replystatus['desc'])
             # 分享获取成长值
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             share_data = {
@@ -152,7 +152,7 @@ class ChinaUnicomApp:
             for i in range(1,4):
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
-                print(sharestatus['desc'] + '[' + i + ']')
+                print(sharestatus['desc'])
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()#['growthV']
