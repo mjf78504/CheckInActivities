@@ -118,7 +118,7 @@ class ChinaUnicomApp:
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
             like_req = self.session.post(url=like_url, data=like_data)
-            likestatus = like_req.json()#['desc']
+            likestatus = json.loads(like_req)
             print(likestatus['desc'])
             # 评论获取金币
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
@@ -133,7 +133,7 @@ class ChinaUnicomApp:
                 'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
             }
             reply_req = self.session.post(url=reply_url, data=reply_data)
-            replystatus = reply_req.json()#['desc']
+            replystatus = json.loads(reply_req)
             print(replystatus['desc'])
             # 分享获取金币
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
@@ -141,7 +141,7 @@ class ChinaUnicomApp:
                 'newsId': '35955a274f7e40f587af629e71a0f9a4',
             }
             share_req = self.session.post(url=share_url, data=share_data)
-            sharestatus = share_req.json()#['desc']
+            sharestatus = json.loads(share_req)
             print(sharestatus['desc'])
             # 获取签到历史
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
