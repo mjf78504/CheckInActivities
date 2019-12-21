@@ -118,8 +118,31 @@ class ChinaUnicomApp:
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
             like_req = self.session.post(url=like_url, data=like_data)
-            desc = like_req.json()#['desc']
-            print(desc)
+            likestatus = like_req.json()#['desc']
+            print(descstatus)
+            # 评论获取金币
+            reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
+            reply_data = {
+                'id': '35955a274f7e40f587af629e71a0f9a4',
+                'newsTitle': '少年，不拼你就“chong”一把',
+                'commentContent': '联通福利好，支持联通！',
+                'upLoadImgName': '',
+                'reqChannel': 'quickNews',
+                'subTitle': '充值就享9折优惠，还有视频会员福利！',
+                'belongPro': '098',
+                'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
+            }
+            reply_req = self.session.post(url=reply_url, data=reply_data)
+            replystatus = reply_req.json()#['desc']
+            print(replystatus)
+            # 分享获取金币
+            share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
+            share_data = {
+                'newsId': '35955a274f7e40f587af629e71a0f9a4',
+            }
+            share_req = self.session.post(url=share_url, data=share_data)
+            sharestatus = share_req.json()#['desc']
+            print(sharestatus)
             # 获取签到历史
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
