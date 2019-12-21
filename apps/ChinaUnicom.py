@@ -109,7 +109,11 @@ class ChinaUnicomApp:
             gold_url = 'http://act.10010.com/SigninApp/signin/goldTotal.do'
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
-            # 点赞获取金币
+            # 获取执行前成长值
+            growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
+            growth_req = self.session.post(url=oldgrowth_url)
+            oldgrowthV = growth_req.json()#['growthV']
+            # 点赞获取成长值
             like_url = 'https://m.client.10010.com/commentSystem/csPraise'
             like_data = {
                 'pointChannel': '01',
@@ -117,10 +121,12 @@ class ChinaUnicomApp:
                 'reqChannel': 'quickNews',
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
-            like_req = self.session.post(url=like_url, data=like_data)
-            likestatus = like_req.json()
-            print(likestatus['desc'])
-            # 评论获取金币
+            print('---点赞一次获取1成长值(每天三次)---')
+            for i in (1,4):
+                like_req = self.session.post(url=like_url, data=like_data)
+                likestatus = like_req.json()
+                print(likestatus['desc'] + '[i]')
+            # 评论获取成长值
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
             reply_data = {
                 'id': '35955a274f7e40f587af629e71a0f9a4',
@@ -132,17 +138,25 @@ class ChinaUnicomApp:
                 'belongPro': '098',
                 'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
             }
-            reply_req = self.session.post(url=reply_url, data=reply_data)
-            replystatus = reply_req.json()
-            print(replystatus['desc'])
-            # 分享获取金币
+            print('---评论一次获取2成长值(每天三次)---')
+            for i in (1,4):
+                reply_req = self.session.post(url=reply_url, data=reply_data)
+                replystatus = reply_req.json()
+                print(replystatus['desc'] + '[i]')
+            # 分享获取成长值
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             share_data = {
                 'newsId': '35955a274f7e40f587af629e71a0f9a4',
             }
-            share_req = self.session.post(url=share_url, data=share_data)
-            sharestatus = share_req.json()
-            print(sharestatus['desc'])
+            print('---分享一次获取2成长值(每天三次)---')
+            for i in (1,4):
+                share_req = self.session.post(url=share_url, data=share_data)
+                sharestatus = share_req.json()
+                print(sharestatus['desc'] + '[i]')
+            # 获取执行后成长值
+            nowgrowthV = growth_req.json()#['growthV']
+            print('执行前成长值' + oldgrowthV)
+            print('执行后成长值' + nowgrowthV)
             # 获取签到历史
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
