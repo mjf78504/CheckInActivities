@@ -111,8 +111,8 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             # 获取执行前成长值
             growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
-            growth_req = self.session.post(url=growth_url)
-            oldgrowthV = growth_req.json()#['growthV']
+            oldgrowth_req = self.session.post(url=growth_url)
+            oldgrowthV = oldgrowth_req.json()#['growthV']
             # 点赞获取成长值
             like_url = 'https://m.client.10010.com/commentSystem/csPraise'
             like_data = {
@@ -125,7 +125,7 @@ class ChinaUnicomApp:
             for i in (1,4):
                 like_req = self.session.post(url=like_url, data=like_data)
                 likestatus = like_req.json()
-                print(likestatus['desc'] + '[i]')
+                print(likestatus['desc'] + '[' + i + ']')
             # 评论获取成长值
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
             reply_data = {
@@ -142,7 +142,7 @@ class ChinaUnicomApp:
             for i in (1,4):
                 reply_req = self.session.post(url=reply_url, data=reply_data)
                 replystatus = reply_req.json()
-                print(replystatus['desc'] + '[i]')
+                print(replystatus['desc'] + '[' + i + ']')
             # 分享获取成长值
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             share_data = {
@@ -152,9 +152,10 @@ class ChinaUnicomApp:
             for i in (1,4):
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
-                print(sharestatus['desc'] + '[i]')
+                print(sharestatus['desc'] + '[' + i + ']')
             # 获取执行后成长值
-            nowgrowthV = growth_req.json()#['growthV']
+            nowgrowth_req = self.session.post(url=growth_url)
+            nowgrowthV = nowgrowth_req.json()#['growthV']
             print('执行前成长值' + oldgrowthV)
             print('执行后成长值' + nowgrowthV)
             # 获取签到历史
