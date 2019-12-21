@@ -119,7 +119,7 @@ class ChinaUnicomApp:
             }
             like_req = self.session.post(url=like_url, data=like_data)
             likestatus = like_req.json()#['desc']
-            print(likestatus)
+            print(likestatus['desc'])
             # 评论获取金币
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
             reply_data = {
@@ -134,7 +134,7 @@ class ChinaUnicomApp:
             }
             reply_req = self.session.post(url=reply_url, data=reply_data)
             replystatus = reply_req.json()#['desc']
-            print(replystatus)
+            print(replystatus['desc'])
             # 分享获取金币
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             share_data = {
@@ -142,7 +142,7 @@ class ChinaUnicomApp:
             }
             share_req = self.session.post(url=share_url, data=share_data)
             sharestatus = share_req.json()#['desc']
-            print(sharestatus)
+            print(sharestatus['desc'])
             # 获取签到历史
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
