@@ -112,7 +112,7 @@ class ChinaUnicomApp:
             # 获取执行前成长值
             growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
             oldgrowth_req = self.session.post(url=growth_url)
-            oldgrowthV = oldgrowth_req.json()#['growthV']
+            oldgrowthV = oldgrowth_req.json()['data']['growthV']
             # 点赞获取成长值
             like_url = 'https://m.client.10010.com/commentSystem/csPraise'
             like_data = {
@@ -155,7 +155,7 @@ class ChinaUnicomApp:
                 print(sharestatus['desc'])
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
-            nowgrowthV = nowgrowth_req.json()#['growthV']
+            nowgrowthV = nowgrowth_req.json()['data']['growthV']
             print('执行前成长值' + oldgrowthV)
             print('执行后成长值' + nowgrowthV)
             # 获取签到历史
