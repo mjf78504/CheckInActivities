@@ -122,7 +122,7 @@ class ChinaUnicomApp:
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
             print('---点赞一次获取1成长值(每天三次)---')
-            for i in (1,4):
+            for i in range(1,4):
                 like_req = self.session.post(url=like_url, data=like_data)
                 likestatus = like_req.json()
                 print(likestatus['desc'] + '[' + i + ']')
@@ -139,7 +139,7 @@ class ChinaUnicomApp:
                 'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
             }
             print('---评论一次获取2成长值(每天三次)---')
-            for i in (1,4):
+            for i in range(1,4):
                 reply_req = self.session.post(url=reply_url, data=reply_data)
                 replystatus = reply_req.json()
                 print(replystatus['desc'] + '[' + i + ']')
@@ -149,7 +149,7 @@ class ChinaUnicomApp:
                 'newsId': '35955a274f7e40f587af629e71a0f9a4',
             }
             print('---分享一次获取2成长值(每天三次)---')
-            for i in (1,4):
+            for i in range(1,4):
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
                 print(sharestatus['desc'] + '[' + i + ']')
