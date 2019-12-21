@@ -119,7 +119,7 @@ class ChinaUnicomApp:
             }
             like_req = self.session.post(url=like_url, data=like_data)
             likestatus = like_req.json()#['desc']
-            print(descstatus)
+            print(likestatus)
             # 评论获取金币
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
             reply_data = {
