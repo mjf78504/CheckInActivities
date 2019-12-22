@@ -160,7 +160,7 @@ class ChinaUnicomApp:
             print('执行前成长值：' + oldgrowthV)
             print('执行后成长值：' + nowgrowthV)
             # 每天免费抽奖3次
-            lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=f8a49a1e503faa05c56b77cd85f6dac1'
+            lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang'
             lottery_req = self.session.post(url=lottery_url)
             lottery_result = lottery_req.json()['RspMsg']
             print('---免费抽奖情况记录---')
