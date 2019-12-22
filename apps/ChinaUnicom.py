@@ -143,8 +143,19 @@ class ChinaUnicomApp:
                 reply_req = self.session.post(url=reply_url, data=reply_data)
                 replystatus = reply_req.json()
                 print(replystatus['desc'])
-            # 分享获取成长值
+            # 分享获取成长值+金币
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
+            list_url = 'https://m.client.10010.com/commentSystem/getNewsList'
+            start_sec = '1576944000'
+            end_sec = time.time()
+            work_days = int((end_sec - start_sec)/(24*60*60))
+            list_data = {
+                'pageNum': work_days,
+                'pageSize': '10',
+                'reqChannel': '00',
+            }
+            list_req = self.session.post(url=list_url, data=list_data).json()['data']['id']
+            print(list_req)
             share_data = {
                 'newsId': '35955a274f7e40f587af629e71a0f9a4',
             }
