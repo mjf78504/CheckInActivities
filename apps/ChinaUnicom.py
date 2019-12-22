@@ -159,12 +159,6 @@ class ChinaUnicomApp:
             print('---成长值记录情况---')
             print('执行前成长值：' + oldgrowthV)
             print('执行后成长值：' + nowgrowthV)
-            # 每天免费抽奖3次
-            lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang'
-            lottery_req = self.session.post(url=lottery_url)
-            lottery_result = lottery_req.json()['RspMsg']
-            print('---免费抽奖情况记录---')
-            print(lottery_result)
             # 获取签到历史
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
