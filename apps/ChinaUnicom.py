@@ -147,8 +147,8 @@ class ChinaUnicomApp:
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             list_url = 'https://m.client.10010.com/commentSystem/getNewsList'
             start_sec = '1576944000'
-            end_sec = time.time()
-            work_days = int((end_sec - start_sec)/(24*60*60))
+            end_sec = int(time.time())
+            work_days = (end_sec - start_sec)/(24*60*60)
             list_data = {
                 'pageNum': work_days,
                 'pageSize': '10',
