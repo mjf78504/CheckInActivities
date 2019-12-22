@@ -146,7 +146,7 @@ class ChinaUnicomApp:
             # 分享获取成长值+金币
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             list_url = 'https://m.client.10010.com/commentSystem/getNewsList'
-            start_sec = int(1576944000)
+            start_sec = int(1576940400)
             end_sec = int(time.time())
             work_days = int((end_sec - start_sec)/(24*60*60))
             list_data = {
@@ -154,13 +154,13 @@ class ChinaUnicomApp:
                 'pageSize': '10',
                 'reqChannel': '00',
             }
-            list_req = self.session.post(url=list_url, data=list_data).json()['data']['id']
-            print(list_req)
-            share_data = {
-                'newsId': '35955a274f7e40f587af629e71a0f9a4',
-            }
             print('---分享一次获取2成长值(每天三次)---')
-            for i in range(1,4):
+            print('---分享一次获取2金币(每天十次)---')
+            list_req = self.session.post(url=list_url, data=list_data).json()
+            for list_id in list_req['data']['id'].values():
+                share_data = {
+                    'newsId': list_id,
+                }
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
                 print(sharestatus['desc'])
