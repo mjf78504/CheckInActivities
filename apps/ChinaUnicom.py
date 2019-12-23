@@ -111,10 +111,13 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
             #获取抽奖usernumberofjsp
+            print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
             usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).text
             usernumberofjsp_search = re.search(r'[a-zA-Z0-9]{32}',usernumberofjsp_req).group()
-            print(usernumberofjsp_search)
+            lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=' + usernumberofjsp_search
+            lottery_req = self.session.post(url=lottery_url).json()
+            print(lottery_req['RspMsg'])
             # 访问访问Weibo获取金币
             print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
@@ -185,11 +188,11 @@ class ChinaUnicomApp:
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
-            print('---成长值记录情况---')
+            print('---成长值情况记录---')
             print('执行前成长值：' + oldgrowthV)
             print('执行后成长值：' + nowgrowthV)
             # 获取签到历史
-            print('---签到记录情况---')
+            print('---签到情况记录---')
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
             continuCount = querySignin_req.json()['continuCount']
