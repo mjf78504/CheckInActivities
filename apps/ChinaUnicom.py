@@ -111,7 +111,7 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             #获取抽奖usernumberofjsp
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
-            usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).html.text
+            usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).text
             print(usernumberofjsp_req)
             usernumberofjsp_search = re.search(r'[a-zA-Z0-9]{32}',usernumberofjsp_req).group()
             print(usernumberofjsp_search)
