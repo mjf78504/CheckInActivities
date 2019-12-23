@@ -115,7 +115,7 @@ class ChinaUnicomApp:
                 'transId': str(time.strftime('%Y%m%d%H%M')) + '6.26656060440' + str(random.randint(0000,9999)),
                 'userNumber': self.phoneNum,
                 'taskCode': 'TA590934984',
-                'finishTime': time.strftime('%Y%m%d%H%M'),
+                'finishTime': '20191221190412',
                 'taskType': 'DAILY_TASK',
             }
             gold_req = self.session.post(url=weibo_url, data=weibo_data)
