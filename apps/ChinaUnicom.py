@@ -116,8 +116,9 @@ class ChinaUnicomApp:
             usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).text
             usernumberofjsp_search = re.search(r'[a-zA-Z0-9]{32}',usernumberofjsp_req).group()
             lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=' + usernumberofjsp_search
-            lottery_req = self.session.post(url=lottery_url).json()
-            print(lottery_req['RspMsg'])
+            for i in range(1,4):
+                lottery_req = self.session.post(url=lottery_url).json()
+                print(lottery_req['RspMsg'])
             # 访问访问Weibo获取金币
             print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
