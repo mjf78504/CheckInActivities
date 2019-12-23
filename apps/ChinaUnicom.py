@@ -157,9 +157,9 @@ class ChinaUnicomApp:
             print('---分享一次获取2金币(每天十次)---')
             list_req = self.session.post(url=list_url, data=list_data).json()
             print(list_req['data'])
-            for list_id in list_req['data']['id']:
+            for list_id in list_req['data']:
                 share_data = {
-                    'newsId': list_id,
+                    'newsId': list_id['id'],
                 }
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
