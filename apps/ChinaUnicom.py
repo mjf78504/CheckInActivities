@@ -110,6 +110,7 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
             # 访问访问Weibo获取金币
+            print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
             weibo_data = {
                 'transId': str(time.strftime('%Y%m%d%H%M')) + '6.26656060440' + str(random.randint(0000,9999)),
@@ -132,7 +133,7 @@ class ChinaUnicomApp:
                 'reqChannel': 'quickNews',
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
-            print('---点赞一次获取1成长值(每天三次)---')
+            print('---点赞一次获取1个成长值(每天三次)---')
             for i in range(1,4):
                 like_req = self.session.post(url=like_url, data=like_data)
                 likestatus = like_req.json()
@@ -149,7 +150,7 @@ class ChinaUnicomApp:
                 'belongPro': '098',
                 'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
             }
-            print('---评论一次获取2成长值(每天三次)---')
+            print('---评论一次获取2个成长值(每天三次)---')
             for i in range(1,4):
                 reply_req = self.session.post(url=reply_url, data=reply_data)
                 replystatus = reply_req.json()
@@ -165,8 +166,8 @@ class ChinaUnicomApp:
                 'pageSize': '10',
                 'reqChannel': '00',
             }
-            print('---分享一次获取2成长值(每天三次)---')
-            print('---分享一次获取2金币(每天十次)---')
+            print('---分享一次获取2个成长值(每天三次)---')
+            print('---分享一次获取2个金币(每天十次)---')
             list_req = self.session.post(url=list_url, data=list_data).json()
             for list_id in list_req['data']:
                 share_data = {
