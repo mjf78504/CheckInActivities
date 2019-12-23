@@ -111,8 +111,9 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             #获取抽奖usernumberofjsp
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
-            usernumberofjsp_req = self.session.post(url=usernumberofjsp_url)
-            print(usernumberofjsp_req.json())
+            usernumberofjsp_req = self.session.post(url=usernumberofjsp_url).text()
+            usernumberofjsp_search = re.search(r'[a-zA-Z0-9]{32}',usernumberofjsp_req).group()
+            print(usernumberofjsp_search)
             # 访问访问Weibo获取金币
             print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
