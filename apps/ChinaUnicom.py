@@ -112,7 +112,7 @@ class ChinaUnicomApp:
             # 访问访问Weibo获取金币
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
             weibo_data = {
-                'transId': time.strftime('%Y%m%d%H%M') + '6.26656060440' + random.randint(0000,9999),
+                'transId': time.strftime('%Y%m%d%H%M') + '6' + '.' + '26656060440' + random.randint(0000,9999),
                 'userNumber': self.phoneNum,
                 'taskCode': 'TA590934984',
                 'finishTime': time.strftime('%Y%m%d%H%M'),
