@@ -119,7 +119,7 @@ class ChinaUnicomApp:
                 'taskType': 'DAILY_TASK',
             }
             gold_req = self.session.post(url=weibo_url, data=weibo_data)
-            print(gold_req.json())
+            print(gold_req.json()['respMessage'])
             # 获取执行前成长值
             growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
             oldgrowth_req = self.session.post(url=growth_url)
