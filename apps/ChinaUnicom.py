@@ -7,7 +7,6 @@ Description :
 @Software   : PyCharm
 """
 import requests
-import json
 import time
 from base64 import b64encode
 from libs.encrypto import rsa_encrypt_CU,pad_randomstr_CU
@@ -156,8 +155,8 @@ class ChinaUnicomApp:
             }
             print('---分享一次获取2成长值(每天三次)---')
             print('---分享一次获取2金币(每天十次)---')
-            list_req = json.loads(self.session.post(url=list_url, data=list_data))
-            for list_id in list_req['data']['id'].values():
+            list_req = self.session.post(url=list_url, data=list_data).json()
+            for list_id in list_req['data']['id']:
                 share_data = {
                     'newsId': list_id,
                 }
