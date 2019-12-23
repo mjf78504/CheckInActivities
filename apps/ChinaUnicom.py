@@ -145,7 +145,7 @@ class ChinaUnicomApp:
             # 分享获取成长值+金币
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             list_url = 'https://m.client.10010.com/commentSystem/getNewsList'
-            start_sec = int(1576940400)
+            start_sec = int(1576944000)
             end_sec = int(time.time())
             work_days = int((end_sec - start_sec)/(24*60*60))
             list_data = {
@@ -156,7 +156,6 @@ class ChinaUnicomApp:
             print('---分享一次获取2成长值(每天三次)---')
             print('---分享一次获取2金币(每天十次)---')
             list_req = self.session.post(url=list_url, data=list_data).json()
-            print(list_req['data'])
             for list_id in list_req['data']:
                 share_data = {
                     'newsId': list_id['id'],
@@ -171,6 +170,7 @@ class ChinaUnicomApp:
             print('执行前成长值：' + oldgrowthV)
             print('执行后成长值：' + nowgrowthV)
             # 获取签到历史
+            print('---签到记录情况---')
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
             querySignin_req = self.session.post(url=querySignin_url)
             continuCount = querySignin_req.json()['continuCount']
