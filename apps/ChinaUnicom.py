@@ -239,7 +239,7 @@ class ChinaUnicomApp:
         weed_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/1/1/grow'
         deinsec_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/2/1/grow'
         watering = self.session.post(url=watering_url, headers=self.headers)
-        wateringStates = watering .json()['addedValue']
+        wateringStates = watering.json()['addedValue']
         weed = self.session.post(url=weed_url, headers=self.headers)
         weedStates = weed.json()['addedValue']
         deinsec = self.session.post(url=deinsec_url, headers=self.headers)
