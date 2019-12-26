@@ -112,7 +112,7 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             # 每日权益签到
             qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
-            qysign_req = self.session.post(url=gold_url).json()
+            qysign_req = self.session.get(qysign_url).json()
             print(qysign_req)
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
