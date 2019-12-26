@@ -110,7 +110,11 @@ class ChinaUnicomApp:
             gold_url = 'http://act.10010.com/SigninApp/signin/goldTotal.do'
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
-            #获取抽奖usernumberofjsp
+            # 每日权益签到
+            qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
+            qysign_req = self.session.post(url=gold_url).json()
+            print(qysign_req)
+            # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
             usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).text
