@@ -117,7 +117,7 @@ class ChinaUnicomApp:
                 'desmobile': self.phoneNum,
                 'version': 'android@7.0100',
             }
-            self.session.post(url=qy_url, data=qy_data)
+            self.session.post(url=qy_url, data=qy_data).cookies
             qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
             qysign_req = self.session.get(qysign_url).json()
             print(qysign_req)
