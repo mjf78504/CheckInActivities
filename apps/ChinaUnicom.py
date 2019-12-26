@@ -111,6 +111,13 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
             # 每日权益签到
+            qy_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
+            qy_data = {
+                'yw_code': '',
+                'desmobile': self.phoneNum,
+                'version': 'android@7.0100',
+            }
+            self.session.post(qy_url, data=qy_data)
             qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
             qysign_req = self.session.get(qysign_url).json()
             print(qysign_req)
