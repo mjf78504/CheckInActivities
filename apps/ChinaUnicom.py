@@ -124,7 +124,7 @@ class ChinaUnicomApp:
             print(qylogin_req)
             qysign_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
             qysign_req = self.session.get(qysign_url).json()
-            print(qysign_req)
+            print(qysign_req.cookies)
             exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
