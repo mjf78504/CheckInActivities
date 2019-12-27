@@ -121,10 +121,12 @@ class ChinaUnicomApp:
             print(qy_req.status_code)
             print(qy_req.text)
             print(qy_req.cookies)
+            print(qy_req.headers['Location'])
             if qy_req.status_code == 302:
                 qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
                 qysign_req = self.session.get(qysign_url).json()
                 print(qysign_req)
+            exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
