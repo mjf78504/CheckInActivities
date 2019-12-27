@@ -117,7 +117,7 @@ class ChinaUnicomApp:
                 'desmobile': self.phoneNum,
                 'version': 'android@7.0100',
             }
-            qy_req = requests.post(url=qy_url, data=qy_data, allow_redirects=False)
+            qy_req = requests.post(url=qy_url, data=qy_data, cookies=login_req.cookies, allow_redirects=False)
             print(qy_req.status_code)
             print(qy_req.text)
             if qy_req.status_code == 302:
