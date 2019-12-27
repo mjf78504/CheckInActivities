@@ -111,21 +111,16 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
             # 每日权益签到
-            qy_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
+            qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
             qy_data = {
                 'yw_code': '',
                 'desmobile': self.phoneNum,
                 'version': 'android@7.0100',
             }
-            qy_req = requests.post(url=qy_url, data=qy_data, allow_redirects=False)
-            print(qy_req.status_code)
-            print(qy_req.text)
-            if qy_req.status_code == 302:
-                cer = qy_req.cookies
-                qylogin = requests.get(qy_req.headers['Location'], cookies=cer)
-                qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
-                qysign_req = requests.get(qysign_url, cookies=qylogin.cookies).json()
-                print(qysign_req)
+            self.session.post(url=qy_url, data=qy_data)
+            qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
+            qysign_req = self.session.get(url=qysign_url).json()
+            print(qysign_req)
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
