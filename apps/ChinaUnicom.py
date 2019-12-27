@@ -117,13 +117,13 @@ class ChinaUnicomApp:
                 'desmobile': self.phoneNum,
                 'version': 'android@7.0100',
             }
-            qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
+            qy_req = requests.post(url=qy_url, data=qy_data, allow_redirects=False)
             if qy_req.status_code == 302:
                 cer = qy_req.cookies
-                self.session.get(qy_req.headers['Location'], cookies=cer)
-            qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
-            qysign_req = self.session.get(qysign_url).json()
-            print(qysign_req)
+                qylogin = requests.get(qy_req.headers['Location'], cookies=cer)
+                qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
+                qysign_req = requests.get(qysign_url, cookies=qylogin.cookies).json()
+                print(qysign_req)
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
