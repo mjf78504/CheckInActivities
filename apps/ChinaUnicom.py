@@ -118,8 +118,7 @@ class ChinaUnicomApp:
                 'version': 'android@7.0100',
             }
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
-            qylogin_req = self.session.get(url=qy_req, allow_redirects=False).headers['Location']
-            self.session.get(url=qylogin_req)
+            qylogin_req = requests.Session().get(url=qy_req)
             print(qy_req)
             print(qylogin_req)
             qysign_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
