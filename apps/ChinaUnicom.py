@@ -122,7 +122,7 @@ class ChinaUnicomApp:
             print(qy_req)
             print(qylogin_req)
             qysign_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
-            qysign_req = self.session.get(qysign_url).json()
+            qysign_req = requests.Session()(qysign_url).json()
             print(qysign_req)
             exit()
             # 每日免费抽奖
