@@ -118,12 +118,14 @@ class ChinaUnicomApp:
                 'version': 'android@7.0100',
             }
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
-            qylogin_req = requests.Session().get(url=qy_req)
-            print(qy_req)
-            print(qylogin_req)
+            qylogin_req = self.session.get(url=qy_req)
+            print (qylogin_req.content)
+            print (qylogin_req.cookies)
             qysign_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
-            qysign_req = requests.Session().get(qysign_url).json()
-            print(qysign_req)
+            qysign_req = self.session.get(qysign_url)
+            print qysign_req.url # 知道实际上被重定向后的链接是什么
+            print qysign_req.content # 返回来什么内容
+            print qysign_req.status_code # 状态码
             exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
