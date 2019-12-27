@@ -120,11 +120,9 @@ class ChinaUnicomApp:
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
             print(qy_req.status_code)
             print(qy_req.text)
+            print(qy_req.cookies)
             if qy_req.status_code == 302:
-                cer = qy_req.cookies
-                qylogin = self.session.get(qy_req.headers['Location'])
-                print(qylogin.cookies)
-                qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/queryAccSign?day=201912'
+                qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
                 qysign_req = self.session.get(qysign_url).json()
                 print(qysign_req)
             # 每日免费抽奖
