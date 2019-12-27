@@ -117,12 +117,9 @@ class ChinaUnicomApp:
                 'desmobile': self.phoneNum,
                 'version': 'android@7.0100',
             }
-            qy_req = self.session.post(url=qy_url, data=qy_data)
-            print(qy_req.status_code)
-            print(qy_req.text)
-            print(qy_req.cookies)
-            print(qy_req.headers['Location'])
-            qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
+            qy_req = self.session.post(url=qy_url, data=qy_data).headers['Location']
+            qylogin_req = self.session.get(url=qy_req)
+            qysign_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
             qysign_req = self.session.get(qysign_url).json()
             print(qysign_req)
             exit()
