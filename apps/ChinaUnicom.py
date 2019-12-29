@@ -238,3 +238,17 @@ class ChinaUnicomApp:
             cur_time, wateringStates, weedStates, deinsecStates)
         print(content)
         return 1, content
+
+    def woTree(self):
+        qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
+        qy_data = {
+            'yw_code': '',
+            'desmobile': self.phoneNum,
+            'version': 'android@7.0100',
+        }
+        self.headers['Host'] = 'qy.chinaunicom.cn'
+        qy_req = self.session.post(url=qy_url, headers=self.headers, data=qy_data).headers['Location']
+        qylogin_req = self.session.get(url=qy_req)
+        print (qylogin_req.cookies)
+        print (qylogin_req.url)
+        return 1, content
