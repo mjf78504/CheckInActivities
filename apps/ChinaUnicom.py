@@ -116,7 +116,7 @@ class ChinaUnicomApp:
             usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).text
             usernumberofjsp_search = re.search(r'[a-zA-Z0-9]{32}',usernumberofjsp_req).group()
             lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=' + usernumberofjsp_search
-            # for i in range(1,4):
+            for i in range(1,4):
                 # lottery_req = self.session.post(url=lottery_url).json()
                 # print(lottery_req['RspMsg'])
             # 访问访问Weibo获取金币
@@ -129,8 +129,8 @@ class ChinaUnicomApp:
                 'finishTime': '20191221190412',
                 'taskType': 'DAILY_TASK',
             }
-            # gold_req = self.session.post(url=weibo_url, data=weibo_data)
-            # print(gold_req.json()['respMessage'])
+            gold_req = self.session.post(url=weibo_url, data=weibo_data)
+            print(gold_req.json()['respMessage'])
             # 获取执行前成长值
             growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
             oldgrowth_req = self.session.post(url=growth_url)
@@ -144,10 +144,10 @@ class ChinaUnicomApp:
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
             print('---点赞一次获取1个成长值(每天三次)---')
-            # for i in range(1,4):
-                # like_req = self.session.post(url=like_url, data=like_data)
-                # likestatus = like_req.json()
-                # print(likestatus['desc'])
+            for i in range(1,4):
+                like_req = self.session.post(url=like_url, data=like_data)
+                likestatus = like_req.json()
+                print(likestatus['desc'])
             # 评论获取成长值
             reply_url = 'https://m.client.10010.com/commentSystem/saveComment'
             reply_data = {
@@ -161,10 +161,10 @@ class ChinaUnicomApp:
                 'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
             }
             print('---评论一次获取2个成长值(每天三次)---')
-            # for i in range(1,4):
-                # reply_req = self.session.post(url=reply_url, data=reply_data)
-                # replystatus = reply_req.json()
-                # print(replystatus['desc'])
+            for i in range(1,4):
+                reply_req = self.session.post(url=reply_url, data=reply_data)
+                replystatus = reply_req.json()
+                print(replystatus['desc'])
             # 分享获取成长值+金币
             share_url = 'https://m.client.10010.com/mobileService/customer/quickNews/shareSuccess.htm'
             list_url = 'https://m.client.10010.com/commentSystem/getNewsList'
@@ -178,14 +178,14 @@ class ChinaUnicomApp:
             }
             print('---分享一次获取2个成长值(每天三次)---')
             print('---分享一次获取2个金币(每天十次)---')
-            # list_req = self.session.post(url=list_url, data=list_data).json()
-            # for list_id in list_req['data']:
+            list_req = self.session.post(url=list_url, data=list_data).json()
+            for list_id in list_req['data']:
                 share_data = {
-                    # 'newsId': list_id['id'],
+                    'newsId': list_id['id'],
                 }
-                # share_req = self.session.post(url=share_url, data=share_data)
-                # sharestatus = share_req.json()
-                # print(sharestatus['desc'])
+                share_req = self.session.post(url=share_url, data=share_data)
+                sharestatus = share_req.json()
+                print(sharestatus['desc'])
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
