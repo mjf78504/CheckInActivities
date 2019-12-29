@@ -116,7 +116,7 @@ class ChinaUnicomApp:
             usernumberofjsp_req = self.session.get(url=usernumberofjsp_url).text
             usernumberofjsp_search = re.search(r'[a-zA-Z0-9]{32}',usernumberofjsp_req).group()
             lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=' + usernumberofjsp_search
-            for i in range(1,4):
+            # for i in range(1,4):
                 # lottery_req = self.session.post(url=lottery_url).json()
                 # print(lottery_req['RspMsg'])
             # 访问访问Weibo获取金币
@@ -144,7 +144,7 @@ class ChinaUnicomApp:
                 'reqId': '35955a274f7e40f587af629e71a0f9a4',
             }
             print('---点赞一次获取1个成长值(每天三次)---')
-            for i in range(1,4):
+            # for i in range(1,4):
                 # like_req = self.session.post(url=like_url, data=like_data)
                 # likestatus = like_req.json()
                 # print(likestatus['desc'])
@@ -161,7 +161,7 @@ class ChinaUnicomApp:
                 'mainImage': 'https://m1.img.10010.com/resources/noticeSys/20191220/jpg/938ddad309ff421bba691a0695410f73.jpg',
             }
             print('---评论一次获取2个成长值(每天三次)---')
-            for i in range(1,4):
+            # for i in range(1,4):
                 # reply_req = self.session.post(url=reply_url, data=reply_data)
                 # replystatus = reply_req.json()
                 # print(replystatus['desc'])
