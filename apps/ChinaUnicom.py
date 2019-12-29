@@ -110,6 +110,20 @@ class ChinaUnicomApp:
             gold_url = 'http://act.10010.com/SigninApp/signin/goldTotal.do'
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
+            cu = self.session.cookies
+            print (cu)
+            qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
+            qy_data = {
+                'yw_code': '',
+                'desmobile': self.phoneNum,
+                'version': 'android@7.0100',
+            }
+            self.headers['Host'] = 'qy.chinaunicom.cn'
+            qy_req = requests.post(url=qy_url, data=qy_data, cookies=cu, allow_redirects=False)
+            qylogin_req = requests.get(url=qy_req.headers['Location'], cookies=qy_req.cookies, allow_redirects=False)
+            qyhome_req = requests.get(url=qylogin_req.headers['Location'], cookies=qylogin_req.cookies)
+            print (qyhome_req.cookies)
+            print (qyhome_req.url)
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -238,19 +252,3 @@ class ChinaUnicomApp:
             cur_time, wateringStates, weedStates, deinsecStates)
         print(content)
         return 1, content
-
-    def woRight(self):
-        cu = self.session.cookies
-        print (cu)
-        qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
-        qy_data = {
-            'yw_code': '',
-            'desmobile': self.phoneNum,
-            'version': 'android@7.0100',
-        }
-        self.headers['Host'] = 'qy.chinaunicom.cn'
-        qy_req = requests.post(url=qy_url, data=qy_data, cookies=cu, allow_redirects=False)
-        qylogin_req = requests.get(url=qy_req.headers['Location'], cookies=qy_req.cookies, allow_redirects=False)
-        qyhome_req = requests.get(url=qylogin_req.headers['Location'], cookies=qylogin_req.cookies)
-        print (qyhome_req.cookies)
-        print (qyhome_req.url)
