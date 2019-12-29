@@ -251,4 +251,3 @@ class ChinaUnicomApp:
         qylogin_req = self.session.get(url=qy_req, headers=self.headers)
         print (qylogin_req.cookies)
         print (qylogin_req.url)
-        return 1, content
