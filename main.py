@@ -24,7 +24,7 @@ def unicomCheckin():
         _, woRightContent = unicom.woRight()
     else:
         signinContent, woTreeContent, woRightContent = '  '
-    mailcontent_CU = loginContent + signinContent + woTreeContent + woRightContent + '\n\n'
+    mailcontent_CU = loginContent + signinContent + woTreeContent + '\n\n'
     return mailcontent_CU
 
 if __name__=='__main__':
