@@ -249,7 +249,7 @@ class ChinaUnicomApp:
             'version': 'android@7.0100',
         }
         self.headers['Host'] = 'qy.chinaunicom.cn'
-        qy_req = requests.post(url=qy_url, data=qy_data, allow_redirects=False)
-        qylogin_req = requests.get(url=qy_req.headers['Location'], headers=self.headers)
+        qy_req = requests.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
+        qylogin_req = requests.get(url=qy_req, headers=self.headers)
         print (qylogin_req.cookies)
         print (qylogin_req.url)
