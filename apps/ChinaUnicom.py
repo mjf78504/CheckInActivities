@@ -239,7 +239,7 @@ class ChinaUnicomApp:
         print(content)
         return 1, content
 
-    def woTree(self):
+    def woRight(self):
         qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
         qy_data = {
             'yw_code': '',
