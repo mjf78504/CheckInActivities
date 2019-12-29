@@ -250,6 +250,6 @@ class ChinaUnicomApp:
         }
         self.headers['Host'] = 'qy.chinaunicom.cn'
         qy_req = requests.post(url=qy_url, data=qy_data, cookies=cu, allow_redirects=False).headers['Location']
-        qylogin_req = requests.get(url=qy_req, headers=self.headers)
+        qylogin_req = requests.get(url=qy_req)
         print (qylogin_req.cookies)
         print (qylogin_req.url)
