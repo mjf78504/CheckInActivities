@@ -240,6 +240,8 @@ class ChinaUnicomApp:
         return 1, content
 
     def woRight(self):
+        cu = self.session.cookies
+        print (cu.cookies)
         qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
         qy_data = {
             'yw_code': '',
@@ -247,8 +249,7 @@ class ChinaUnicomApp:
             'version': 'android@7.0100',
         }
         self.headers['Host'] = 'qy.chinaunicom.cn'
-        self.session.get(url='https://qy.chinaunicom.cn/mobile-h5/main/userarea.html', headers=self.headers)
-        qy_req = self.session.post(url=qy_url, allow_redirects=False, data=qy_data).headers['Location']
-        qylogin_req = self.session.get(url=qy_req, headers=self.headers)
+        qy_req = requests.post(url=qy_url, data=qy_data, allow_redirects=False)
+        qylogin_req = requests.get(url=qy_req.headers['Location'], headers=self.headers)
         print (qylogin_req.cookies)
         print (qylogin_req.url)
