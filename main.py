@@ -23,7 +23,7 @@ def unicomCheckin():
         _, woTreeContent = unicom.woTree()
         _, woRightContent = unicom.woRight()
     else:
-        signinContent, woTreeContent, woRightContent = '  '
+        signinContent, woTreeContent = '  '
     mailcontent_CU = loginContent + signinContent + woTreeContent + '\n\n'
     return mailcontent_CU
 
