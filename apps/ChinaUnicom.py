@@ -10,7 +10,7 @@ import requests
 import time
 import random
 import re
-import urllib.request
+from urllib import request
 from base64 import b64encode
 from libs.encrypto import rsa_encrypt_CU,pad_randomstr_CU
 
