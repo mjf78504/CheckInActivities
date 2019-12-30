@@ -113,6 +113,7 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             # 权益中心登录
             account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
+            self.session.cookies.clear()
             print(self.session.cookies.get_dict())
             qy_cookies = self.session.get(url=account_url)
             print(self.session.cookies.get_dict())
@@ -123,9 +124,9 @@ class ChinaUnicomApp:
                 'version': 'android@7.0100',
             }
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
-            qylogin_req = requests.get(url=qy_req.headers['Location'], cookies=qy_cookies)
+            qylogin_req = self.session.get(url=qy_req.headers['Location'])
             qytest_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
-            print(requests.get(url=qytest_url, cookies=qy_cookies).json())
+            print(self.session.get(url=qytest_url).json())
             exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
@@ -255,3 +256,5 @@ class ChinaUnicomApp:
             cur_time, wateringStates, weedStates, deinsecStates)
         print(content)
         return 1, content
+
+    def woTree(self):
