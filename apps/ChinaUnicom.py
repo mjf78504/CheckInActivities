@@ -258,3 +258,4 @@ class ChinaUnicomApp:
         return 1, content
 
     def woTree(self):
+        print('尝试重复请求...')
