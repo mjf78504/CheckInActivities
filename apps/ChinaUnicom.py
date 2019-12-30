@@ -112,7 +112,8 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
             # 权益中心登录
-            account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
+            # account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
+            account_url = 'https://qy.chinaunicom.cn/mobile-h5/main/userarea.html'
             qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
             qy_data = {
                 'yw_code': '',
