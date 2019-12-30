@@ -112,7 +112,7 @@ class ChinaUnicomApp:
             totalCoin = gold_req.json()#['goldTotal']
             # 权益中心登录
             account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
-            self.session.get(url=account_url)
+            qy_cookies = request.urlopen(request.Request(account_url)).headers.get('Set-Cookie', '') 
             qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
             qy_data = {
                 'yw_code': '',
@@ -120,9 +120,9 @@ class ChinaUnicomApp:
                 'version': 'android@7.0100',
             }
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
-            qylogin_req = self.session.get(url=qy_req.headers['Location'])
+            qylogin_req = requests.get(url=qy_req.headers['Location'], cookies=qy_cookies)
             qytest_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
-            print(self.session.get(url=qytest_url).json())
+            print(requests.get(url=qytest_url, cookies=qy_cookies).json())
             exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
