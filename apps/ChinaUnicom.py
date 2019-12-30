@@ -121,8 +121,8 @@ class ChinaUnicomApp:
             }
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
             qylogin_req = self.session.get(url=qy_req.headers['Location'])
-            print (qylogin_req.cookies)
-            print (qylogin_req.url)
+            qytest_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
+            print(self.session.get(url=qytest_url).json())
             exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
