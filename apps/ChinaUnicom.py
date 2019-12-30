@@ -119,7 +119,7 @@ class ChinaUnicomApp:
                 'desmobile': self.phoneNum,
                 'version': 'android@7.0100',
             }
-            qy_req = self.session.post(url=qy_url, data=qy_data, cookies=cu, allow_redirects=False)
+            qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
             qylogin_req = self.session.get(url=qy_req.headers['Location'])
             print (qylogin_req.cookies)
             print (qylogin_req.url)
