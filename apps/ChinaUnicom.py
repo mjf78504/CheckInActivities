@@ -240,7 +240,7 @@ class ChinaUnicomApp:
         print(content)
         return 1, content
 
-    def woTree(self):
+    def woRight(self):
         # account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
         account_url = 'https://qy.chinaunicom.cn/mobile-h5/main/userarea.html'
         qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
@@ -261,4 +261,4 @@ class ChinaUnicomApp:
         qylogin_req = self.session.get(url=qy_req.headers['Location'])
         print(self.session.cookies.get_dict())
         qytest_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
-        print(self.session.get(url=qytest_url).json())
+        print(self.session.get(url=qytest_url).json()['resMsg'])
