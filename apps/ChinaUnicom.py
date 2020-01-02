@@ -260,6 +260,7 @@ class ChinaUnicomApp:
         print(self.session.cookies.get_dict())
         qylogin_req = self.session.get(url=qy_req.headers['Location'])
         print(self.session.cookies.get_dict())
-        qytest_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
-        print(self.session.get(url=qytest_url).json()['resMsg'])
-        return 1
+        qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
+        qy_self.session.get(url=qysign_url).json()['resMsg']
+        print(qy_self)
+        return 1, qy_self
