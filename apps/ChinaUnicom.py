@@ -129,7 +129,7 @@ class ChinaUnicomApp:
             self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
             self.session.cookies.set('Hm_lpvt_e080bb1a9f98b31badca3d6f6464d7c2',str(int(time.time())))
             print(self.session.cookies.get_dict())
-            qylogin_req = self.session.get(url=qy_req.headers['Location'],cookies=qy_cookies)
+            qylogin_req = self.session.get(url=qy_req.headers['Location'])
             print(self.session.cookies.get_dict())
             qytest_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
             print(self.session.get(url=qytest_url).json())
