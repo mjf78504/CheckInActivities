@@ -262,3 +262,4 @@ class ChinaUnicomApp:
         print(self.session.cookies.get_dict())
         qytest_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
         print(self.session.get(url=qytest_url).json()['resMsg'])
+        return 1
