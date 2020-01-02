@@ -124,10 +124,10 @@ class ChinaUnicomApp:
             print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
             weibo_data = {
-                'transId': str(time.strftime('%Y%m%d%H%M')) + '6.26656060440' + str(random.randint(0000,9999)),
+                'transId': str(time.strftime('%Y%m%d%H%M')) + '3.96133858168' + str(random.randint(0000,9999)),
                 'userNumber': self.phoneNum,
                 'taskCode': 'TA590934984',
-                'finishTime': '20191221190412',
+                'finishTime': '2020010222122',
                 'taskType': 'DAILY_TASK',
             }
             gold_req = self.session.post(url=weibo_url, data=weibo_data)
