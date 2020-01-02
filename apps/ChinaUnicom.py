@@ -111,29 +111,6 @@ class ChinaUnicomApp:
             gold_url = 'http://act.10010.com/SigninApp/signin/goldTotal.do'
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
-            # 权益中心登录
-            # account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
-            account_url = 'https://qy.chinaunicom.cn/mobile-h5/main/userarea.html'
-            qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
-            qy_data = {
-                'yw_code': '',
-                'desmobile': self.phoneNum,
-                'version': 'android@7.0100',
-            }
-            qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
-            self.session.cookies.clear()
-            print(self.session.cookies.get_dict())
-            # qy_cookies = self.session.get(url=account_url)
-            self.session.cookies.set('CACHE_JSESSIONID','9360536E958F48A098A7E4411A8397ED')
-            # self.session.cookies.set('Hm_lvt_e080bb1a9f98b31badca3d6f6464d7c2','1577453974,1577459700,1577542109,1577542138')
-            self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
-            # self.session.cookies.set('Hm_lpvt_e080bb1a9f98b31badca3d6f6464d7c2',str(int(time.time())))
-            print(self.session.cookies.get_dict())
-            qylogin_req = self.session.get(url=qy_req.headers['Location'])
-            print(self.session.cookies.get_dict())
-            qytest_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
-            print(self.session.get(url=qytest_url).json())
-            exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -264,4 +241,24 @@ class ChinaUnicomApp:
         return 1, content
 
     def woTree(self):
-        print('尝试重复请求...')
+        # account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
+        account_url = 'https://qy.chinaunicom.cn/mobile-h5/main/userarea.html'
+        qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
+        qy_data = {
+            'yw_code': '',
+            'desmobile': self.phoneNum,
+            'version': 'android@7.0100',
+        }
+        qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
+        self.session.cookies.clear()
+        print(self.session.cookies.get_dict())
+        # qy_cookies = self.session.get(url=account_url)
+        self.session.cookies.set('CACHE_JSESSIONID','9360536E958F48A098A7E4411A8397ED')
+        # self.session.cookies.set('Hm_lvt_e080bb1a9f98b31badca3d6f6464d7c2','1577453974,1577459700,1577542109,1577542138')
+        self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
+        # self.session.cookies.set('Hm_lpvt_e080bb1a9f98b31badca3d6f6464d7c2',str(int(time.time())))
+        print(self.session.cookies.get_dict())
+        qylogin_req = self.session.get(url=qy_req.headers['Location'])
+        print(self.session.cookies.get_dict())
+        qytest_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
+        print(self.session.get(url=qytest_url).json())
