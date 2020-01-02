@@ -122,7 +122,7 @@ class ChinaUnicomApp:
             }
             qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
             self.session.cookies.clear()
-            print(self.session.cookies.get_dict())
+            # print(self.session.cookies.get_dict())
             # qy_cookies = self.session.get(url=account_url)
             cookies = {
                 'CACHE_JSESSIONID': '9360536E958F48A098A7E4411A8397ED',
@@ -131,7 +131,7 @@ class ChinaUnicomApp:
                 'Hm_lpvt_e080bb1a9f98b31badca3d6f6464d7c2': int(time.time()),
             }
             self.session.cookies = cookies
-            print(self.session.cookies.get_dict())
+            # print(self.session.cookies.get_dict())
             qylogin_req = self.session.get(url=qy_req.headers['Location'])
             qytest_url = 'https://qy.chinaunicom.cn/mobile/userarea/queryAccountInfo'
             print(self.session.get(url=qytest_url).json())
