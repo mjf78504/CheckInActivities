@@ -261,6 +261,6 @@ class ChinaUnicomApp:
         qylogin_req = self.session.get(url=qy_req.headers['Location'])
         print(self.session.cookies.get_dict())
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
-        qysign_msg = qy_self.session.get(url=qysign_url).json()['resMsg']
+        qysign_msg = self.session.get(url=qysign_url).json()['resMsg']
         print(qysign_msg)
         return 1, qysign_msg
