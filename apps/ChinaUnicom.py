@@ -253,9 +253,10 @@ class ChinaUnicomApp:
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
         qy_cookies = self.session.get(url=account_url)
         uuid_msg = str(uuid.uuid1())
-        print(uuid_msg)
         self.session.cookies.set('remember_me',uuid_msg)
+        print(self.session.cookies.get_dict())
         qylogin_req = self.session.get(url=qy_req)
+        print(self.session.cookies.get_dict())
         # 权益中心首页礼品
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
         qyhome_msg = self.session.get(url=qyhome_url).json()
