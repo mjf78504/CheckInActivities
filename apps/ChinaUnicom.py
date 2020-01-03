@@ -252,7 +252,7 @@ class ChinaUnicomApp:
         print(self.session.cookies.get_dict())
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
         qy_cookies = self.session.get(url=account_url)
-        uuid_msg = uuid.uuid1()
+        uuid_msg = str(uuid.uuid1())
         self.session.cookies.set('remember_me',uuid_msg)
         print(self.session.cookies.get_dict())
         qylogin_req = self.session.get(url=qy_req)
