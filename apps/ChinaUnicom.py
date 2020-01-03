@@ -247,7 +247,7 @@ class ChinaUnicomApp:
             'desmobile': self.phoneNum,
             'version': 'android@7.0100',
         }
-        qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
+        qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
         self.session.cookies.clear()
         print(self.session.cookies.get_dict())
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
@@ -255,7 +255,7 @@ class ChinaUnicomApp:
         uuid_msg = uuid.uuid1()
         self.session.cookies.set('remember_me',uuid_msg)
         print(self.session.cookies.get_dict())
-        qylogin_req = self.session.get(url=qy_req.headers['Location'])
+        qylogin_req = self.session.get(url=qy_req)
         print(self.session.cookies.get_dict())
         # 权益中心首页礼品
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
