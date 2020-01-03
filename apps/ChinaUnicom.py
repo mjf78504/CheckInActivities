@@ -257,6 +257,7 @@ class ChinaUnicomApp:
         weed_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/1/1/grow'
         deinsec_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/2/1/grow'
         culture_url = 'https://m.client.10010.com/mactivity/arbordayJson/2018051600000009/3/no/useGoods.htm'
+        dayWater_url = 'https://m.client.10010.com/mactivity/arbordayJson/arbor/3/0/3/grow.htm'
         watering = self.session.post(url=watering_url, headers=self.headers)
         wateringStates = watering.json()['addedValue']
         print(wateringStates)
@@ -264,9 +265,14 @@ class ChinaUnicomApp:
         weedStates = weed.json()['addedValue']
         deinsec = self.session.post(url=deinsec_url, headers=self.headers)
         deinsecStates = deinsec.json()['addedValue']
-        culture = self.session.post(url=culture_url, headers=self.headers)
-        print(culture.json())
-
+        dayWater = self.session.post(url=dayWater_url, headers=self.headers)
+        print(dayWater.json())
+        for i in range(1,11):
+            culture = self.session.post(url=culture_url, headers=self.headers)
+            if culture.json()['code'] == '0000':
+                print('成功使用能量卡获得10营养值')
+            else:
+                print('无法使用能量卡获得10营养值，请检查能量卡库存！')
         content = "\n{} 沃之树：\n    浇水：{}次\n    除草：{}次\n    除虫：{}次\n".format(
             cur_time, wateringStates, weedStates, deinsecStates)
         print(content)
