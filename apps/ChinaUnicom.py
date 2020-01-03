@@ -138,7 +138,7 @@ class ChinaUnicomApp:
             task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
             task09_req = self.session.get(url=task01_url)
             print(task09_req.text)
-            # exit()
+            exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -260,13 +260,17 @@ class ChinaUnicomApp:
         dayWater_url = 'https://m.client.10010.com/mactivity/arbordayJson/arbor/3/0/3/grow.htm'
         watering = self.session.post(url=watering_url, headers=self.headers)
         wateringStates = watering.json()['addedValue']
-        print(wateringStates)
         weed = self.session.post(url=weed_url, headers=self.headers)
         weedStates = weed.json()['addedValue']
         deinsec = self.session.post(url=deinsec_url, headers=self.headers)
         deinsecStates = deinsec.json()['addedValue']
         dayWater = self.session.post(url=dayWater_url, headers=self.headers)
-        print(dayWater.json())
+        print('---沃之树每天浇水情况---')
+        if dayWater.json()['addedValue'] == '0':
+            print('今天早些时候已经成功浇水，此次无法获取培养值')
+        else:
+            print('已经成功浇水并且获得培养值')
+        print('---每天使用10张能量卡情况---')
         for i in range(1,11):
             culture = self.session.post(url=culture_url, headers=self.headers)
             if culture.json()['code'] == '0000':
