@@ -126,6 +126,18 @@ class ChinaUnicomApp:
             task05_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA158495857'
             task05_req = self.session.get(url=task01_url)
             print(task05_req.text)
+            task06_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA705553092'
+            task06_req = self.session.get(url=task01_url)
+            print(task06_req.text)
+            task07_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA590934984'
+            task07_req = self.session.get(url=task01_url)
+            print(task07_req.text)
+            task08_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA353776054'
+            task08_req = self.session.get(url=task01_url)
+            print(task08_req.text)
+            task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
+            task09_req = self.session.get(url=task01_url)
+            print(task09_req.text)
             exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
