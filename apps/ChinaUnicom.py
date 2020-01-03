@@ -10,7 +10,7 @@ import requests
 import time
 import random
 import re
-from urllib import request
+import uuid
 from base64 import b64encode
 from libs.encrypto import rsa_encrypt_CU,pad_randomstr_CU
 
@@ -241,8 +241,6 @@ class ChinaUnicomApp:
         return 1, content
 
     def woRight(self):
-        # account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
-        account_url = 'https://qy.chinaunicom.cn/mobile-h5/main/userarea.html'
         qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
         qy_data = {
             'yw_code': '',
@@ -252,14 +250,18 @@ class ChinaUnicomApp:
         qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False)
         self.session.cookies.clear()
         print(self.session.cookies.get_dict())
-        # qy_cookies = self.session.get(url=account_url)
-        self.session.cookies.set('CACHE_JSESSIONID','9360536E958F48A098A7E4411A8397ED')
-        # self.session.cookies.set('Hm_lvt_e080bb1a9f98b31badca3d6f6464d7c2','1577453974,1577459700,1577542109,1577542138')
-        self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
-        # self.session.cookies.set('Hm_lpvt_e080bb1a9f98b31badca3d6f6464d7c2',str(int(time.time())))
+        account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
+        qy_cookies = self.session.get(url=account_url)
+        uuid_msg = uuid.uuid1()
+        self.session.cookies.set('remember_me',uuid_msg)
         print(self.session.cookies.get_dict())
         qylogin_req = self.session.get(url=qy_req.headers['Location'])
         print(self.session.cookies.get_dict())
+        # 权益中心首页礼品
+        qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
+        qyhome_msg = self.session.get(url=qyhome_url).json()['msg']
+        print(qyhome_msg)
+        # 权益中心签到
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
         qysign_msg = self.session.get(url=qysign_url).json()['resMsg']
         print(qysign_msg)
