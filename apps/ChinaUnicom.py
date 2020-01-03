@@ -10,7 +10,6 @@ import requests
 import time
 import random
 import re
-import uuid
 from base64 import b64encode
 from libs.encrypto import rsa_encrypt_CU,pad_randomstr_CU
 
@@ -252,12 +251,8 @@ class ChinaUnicomApp:
         print(self.session.cookies.get_dict())
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
         qy_cookies = self.session.get(url=account_url)
-        # uuid_msg = str(uuid.uuid1())
-        # self.session.cookies.set('remember_me',uuid_msg)
-        self.session.cookies.set('remember_me','6ced544f-3e7d-417f-a3d3-411cc23dab8a')
-        print(self.session.cookies.get_dict())
+        self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
         qylogin_req = self.session.get(url=qy_req)
-        print(self.session.cookies.get_dict())
         # 权益中心首页礼品
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
         qyhome_msg = self.session.get(url=qyhome_url).json()
