@@ -138,7 +138,7 @@ class ChinaUnicomApp:
             task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
             task09_req = self.session.get(url=task01_url)
             print(task09_req.text)
-            exit()
+            # exit()
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -256,12 +256,15 @@ class ChinaUnicomApp:
         watering_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/0/1/grow'  # POST
         weed_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/1/1/grow'
         deinsec_url = 'http://m.client.10010.com/mactivity/arborday/arbor/1/2/1/grow'
+        culture_url = 'https://m.client.10010.com/mactivity/arborday/2018051600000009/3/no/useGoods'
         watering = self.session.post(url=watering_url, headers=self.headers)
         wateringStates = watering.json()['addedValue']
         weed = self.session.post(url=weed_url, headers=self.headers)
         weedStates = weed.json()['addedValue']
         deinsec = self.session.post(url=deinsec_url, headers=self.headers)
         deinsecStates = deinsec.json()['addedValue']
+        culture = self.session.post(url=culture_url, headers=self.headers)
+        print(culture.json())
 
         content = "\n{} 沃之树：\n    浇水：{}次\n    除草：{}次\n    除虫：{}次\n".format(
             cur_time, wateringStates, weedStates, deinsecStates)
@@ -277,16 +280,17 @@ class ChinaUnicomApp:
         }
         qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
         self.session.cookies.clear()
-        print(self.session.cookies.get_dict())
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
         qy_cookies = self.session.get(url=account_url)
         self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
         qylogin_req = self.session.get(url=qy_req)
         # 权益中心首页礼品
+        print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
-        qyhome_msg = self.session.get(url=qyhome_url).json()
+        qyhome_msg = self.session.get(url=qyhome_url).json()['msg']
         print(qyhome_msg)
         # 权益中心签到
+        print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
         qysign_msg = self.session.get(url=qysign_url).json()['resMsg']
         print(qysign_msg)
