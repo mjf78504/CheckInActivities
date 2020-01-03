@@ -111,6 +111,7 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = gold_req.json()#['goldTotal']
             # 任务测试
+            """
             task01_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA395307980'
             task01_req = self.session.get(url=task01_url)
             print(task01_req.text)
@@ -138,7 +139,7 @@ class ChinaUnicomApp:
             task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
             task09_req = self.session.get(url=task01_url)
             print(task09_req.text)
-            exit()
+            """
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
