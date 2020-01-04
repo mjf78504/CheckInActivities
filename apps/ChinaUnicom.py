@@ -267,7 +267,7 @@ class ChinaUnicomApp:
         deinsecStates = deinsec.json()['addedValue']
         dayWater = self.session.post(url=dayWater_url, headers=self.headers)
         print('---沃之树每天浇水情况---')
-        if dayWater.json()['addedValue'] == '0':
+        if dayWater.json()['data']['addedValue'] == '0':
             print('今天早些时候已经成功浇水，此次无法获取培养值')
         else:
             print('已经成功浇水并且获得培养值')
@@ -299,7 +299,7 @@ class ChinaUnicomApp:
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
-        qyhome_msg = self.session.get(url=qyhome_url).json()['msg']
+        qyhome_msg = self.session.get(url=qyhome_url).json()
         print(qyhome_msg)
         # 权益中心签到
         print('---权益中心每日签到情况---')
