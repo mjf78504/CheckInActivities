@@ -293,8 +293,15 @@ class ChinaUnicomApp:
         qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
         self.session.cookies.clear()
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
-        qy_cookies = self.session.get(url=account_url)
-        self.session.cookies.set('remember_me','d14d7880-ec2c-49fa-898d-2afb61bdeb4e')
+        qyid_cookies = self.session.get(url=account_url)
+        print(session.cookies.get_dict())
+        ticket = re.search(r'[a-z0-9]{48}',qy_req)
+        print(ticket)
+        rm_data = {
+            'ecsTicket': rm_data,
+        }
+        qyrm = self.session.post(url='https://qy.chinaunicom.cn/mobile/auth/auth', data=qy_data)
+        print(session.cookies.get_dict())
         qylogin_req = self.session.get(url=qy_req)
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
