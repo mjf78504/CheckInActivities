@@ -272,7 +272,7 @@ class ChinaUnicomApp:
         else:
             print('已经成功浇水并且获得培养值')
         print('---每天使用10张能量卡情况---')
-        for i in range(1,11):
+        for i in range(1,2):
             culture = self.session.post(url=culture_url, headers=self.headers)
             if culture.json()['code'] == '0000':
                 print('成功使用能量卡获得10营养值')
@@ -298,9 +298,10 @@ class ChinaUnicomApp:
         ticket = re.search(r'[a-z0-9]{48}',qy_req)
         print(ticket)
         rm_data = {
-            'ecsTicket': rm_data,
+            'ecsTicket': ticket,
         }
-        qyrm = self.session.post(url='https://qy.chinaunicom.cn/mobile/auth/auth', data=qy_data)
+        qyrm = self.session.post(url='https://qy.chinaunicom.cn/mobile/auth/auth', data=rm_data)
+        print(qyrm.json())
         print(self.session.cookies.get_dict())
         qylogin_req = self.session.get(url=qy_req)
         # 权益中心首页礼品
