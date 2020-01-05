@@ -265,6 +265,7 @@ class ChinaUnicomApp:
         weedStates = weed.json()['addedValue']
         deinsec = self.session.post(url=deinsec_url, headers=self.headers)
         deinsecStates = deinsec.json()['addedValue']
+        """
         dayWater = self.session.post(url=dayWater_url, headers=self.headers)
         print('---沃之树每天浇水情况---')
         if dayWater.json()['data']['addedValue'] == '0':
@@ -272,12 +273,13 @@ class ChinaUnicomApp:
         else:
             print('已经成功浇水并且获得培养值')
         print('---每天使用10张能量卡情况---')
-        for i in range(1,2):
+        for i in range(1,11):
             culture = self.session.post(url=culture_url, headers=self.headers)
             if culture.json()['code'] == '0000':
                 print('成功使用能量卡获得10营养值')
             else:
                 print('无法使用能量卡获得10营养值，请检查能量卡库存！')
+        """
         content = "\n{} 沃之树：\n    浇水：{}次\n    除草：{}次\n    除虫：{}次\n".format(
             cur_time, wateringStates, weedStates, deinsecStates)
         print(content)
