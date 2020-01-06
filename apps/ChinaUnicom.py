@@ -139,7 +139,7 @@ class ChinaUnicomApp:
             task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
             task09_req = self.session.get(url=task01_url)
             print(task09_req.text)
-            
+            """
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -216,7 +216,6 @@ class ChinaUnicomApp:
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
                 print(sharestatus['desc'])
-            """
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
