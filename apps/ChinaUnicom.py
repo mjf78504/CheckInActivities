@@ -315,7 +315,7 @@ class ChinaUnicomApp:
                 print('没抽中继续寻宝')
             else:
                 print(game_req['msg'])
-                break
+                # break
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
