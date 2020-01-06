@@ -313,7 +313,7 @@ class ChinaUnicomApp:
             game_req = self.session.get(url=game_url).json()
             if game_req['msg'] == 'success':
                 print('没抽中继续寻宝')
-            else：
+            else:
                 print(game_req['msg'])
                 break
         # 权益中心首页礼品
