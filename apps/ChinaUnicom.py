@@ -338,7 +338,7 @@ class ChinaUnicomApp:
         # 微信步数兑换流量
         self.headers['Host'] = 'qy.chinaunicom.cn'
         self.headers['User-Agent'] = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36'
-        step_url = 'https://qy.chinaunicom.cn/mobile/wrun/getflow?actId=1000000000121887&step=' + str(random.randint(23000,28000))
+        step_url = 'https://qy.chinaunicom.cn/mobile/wrun/getflow?actId=1000000000121887&step=' + str(random.randint(2300,2800))
         print(step_url)
         step_req = self.session.get(url=step_url, headers=self.headers).json()
         print(step_req['msg'])
