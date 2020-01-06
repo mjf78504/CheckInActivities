@@ -305,17 +305,20 @@ class ChinaUnicomApp:
         qylogin_req = self.session.get(url=qy_req)
         # 全民来寻宝
         print('---权益中心全民来寻宝游戏情况---')
-        getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
-        getgame_req = self.session.get(url=getgame_url).json()
-        game_data = getgame_req['data']
-        for key in game_data:
-            game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req['tradeId'] + '&boomId=' + key + '&channelType=10086'
-            game_req = self.session.get(url=game_url).json()
-            if game_req['msg'] == 'success':
-                print('没抽中继续寻宝')
-            else:
-                print(game_req['msg'])
-                # break
+        for i in range(1,5):
+            getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
+            getgame_req = self.session.get(url=getgame_url).json()
+            if getgame_req['msg'] == '已经达到了今日次数上限啦，不能再玩咯~':
+                break
+            game_data = getgame_req['data']
+            for key in game_data:
+                game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req['tradeId'] + '&boomId=' + key + '&channelType=10086'
+                game_req = self.session.get(url=game_url).json()
+                if game_req['msg'] == 'success':
+                    print('没抽中继续寻宝')
+                else:
+                    print(game_req['msg'])
+                    break
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
