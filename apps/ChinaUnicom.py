@@ -319,6 +319,10 @@ class ChinaUnicomApp:
                 else:
                     print(game_req['msg'])
                     break
+        # 红包雨活动
+        redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=100&type='
+        redPacket_req = self.session.get(url=redPacket_url).json()
+        print(redPacket_req['msg'])
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
