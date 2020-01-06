@@ -139,7 +139,7 @@ class ChinaUnicomApp:
             task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
             task09_req = self.session.get(url=task01_url)
             print(task09_req.text)
-            """
+            
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -222,6 +222,7 @@ class ChinaUnicomApp:
             print('---成长值情况记录---')
             print('执行前成长值：' + oldgrowthV)
             print('执行后成长值：' + nowgrowthV)
+            """
             # 获取签到历史
             print('---签到情况记录---')
             querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
@@ -319,10 +320,6 @@ class ChinaUnicomApp:
                 else:
                     print(game_req['msg'])
                     break
-        # 微信步数兑换流量
-        step_url = 'https://qy.chinaunicom.cn/mobile/wrun/getflow?actId=1000000000121887&step=' + str(random.randint(23000,28000))
-        step_req = self.session.get(url=step_url).json()
-        print(step_req)
         # 红包雨活动
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
@@ -332,10 +329,15 @@ class ChinaUnicomApp:
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
         qyhome_msg = self.session.get(url=qyhome_url).json()
-        print(qyhome_msg['msg'])
+        print(qyhome_msg)
         # 权益中心签到
         print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
         qysign_msg = self.session.get(url=qysign_url).json()['resMsg']
         print(qysign_msg)
-        return 1, qysign_msg
+        # 微信步数兑换流量
+        self.session.cookies.set('remember_me',None)
+        step_url = 'https://qy.chinaunicom.cn/mobile/wrun/getflow?actId=1000000000121887&step=' + str(random.randint(23000,28000))
+        step_req = self.session.get(url=step_url).json()
+        print(step_req['msg'])
+        return 1, step_req
