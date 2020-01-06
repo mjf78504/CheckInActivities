@@ -319,15 +319,20 @@ class ChinaUnicomApp:
                 else:
                     print(game_req['msg'])
                     break
+        # 微信步数兑换流量
+        step_url = 'https://qy.chinaunicom.cn/mobile/wrun/getflow?actId=1000000000121887&step=' + str(random.randint(23000,28000))
+        step_req = self.session.get(url=step_url).json()
+        print(step_req)
         # 红包雨活动
-        redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=100&type='
+        print('---权益中心红包雨活动情况---')
+        redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
         redPacket_req = self.session.get(url=redPacket_url).json()
         print(redPacket_req['msg'])
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
-        qyhome_msg = self.session.get(url=qyhome_url).json()['msg']
-        print(qyhome_msg)
+        qyhome_msg = self.session.get(url=qyhome_url).json()
+        print(qyhome_msg['msg'])
         # 权益中心签到
         print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
