@@ -139,7 +139,7 @@ class ChinaUnicomApp:
             task09_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA52554375'
             task09_req = self.session.get(url=task01_url)
             print(task09_req.text)
-            """
+            
             # 每日免费抽奖
             print('---每天免费抽奖三次情况记录---')
             usernumberofjsp_url = 'http://m.client.10010.com/dailylottery/static/textdl/userLogin'
@@ -216,6 +216,7 @@ class ChinaUnicomApp:
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
                 print(sharestatus['desc'])
+            """
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
@@ -302,6 +303,19 @@ class ChinaUnicomApp:
         }
         qyrm_cookies = self.session.post(url='https://qy.chinaunicom.cn/mobile/auth/auth', data=rm_data)
         qylogin_req = self.session.get(url=qy_req)
+        # 全民来寻宝
+        print('---权益中心全民来寻宝游戏情况---')
+        getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
+        getgame_req = self.session.get(url=getgame_url).json()
+        game_data = getgame_req['data']
+        for key in game_data:
+            game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req['tradeId'] + '&boomId=' + key + '&channelType=10086'
+            game_req = self.session.get(url=game_url).json()
+            if game_req['msg'] == 'success':
+                print('没抽中继续寻宝')
+            else：
+                print(game_req['msg'])
+                break
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
