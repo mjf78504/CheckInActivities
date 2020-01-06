@@ -327,9 +327,9 @@ class ChinaUnicomApp:
         print(redPacket_req['msg'])
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
-        qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
-        qyhome_msg = self.session.get(url=qyhome_url).json()
-        print(qyhome_msg)
+        # qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
+        # qyhome_msg = self.session.get(url=qyhome_url).json()
+        # print(qyhome_msg)
         # 权益中心签到
         print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
@@ -337,8 +337,7 @@ class ChinaUnicomApp:
         print(qysign_msg)
         # 微信步数兑换流量
         self.headers['Host'] = 'qy.chinaunicom.cn'
-        self.headers['referer'] = 'https://servicewechat.com/wx92a7bc99183a3218/53/page-frame.html'
-        self.session.cookies.set('remember_me',None)
+        self.headers['User-Agent'] = 'Mozilla/5.0 (Linux; Android 6.0; Nexus 5 Build/MRA58N) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Mobile Safari/537.36'
         step_url = 'https://qy.chinaunicom.cn/mobile/wrun/getflow?actId=1000000000121887&step=' + str(random.randint(23000,28000))
         step_req = self.session.get(url=step_url, headers=self.headers).json()
         print(step_req['msg'])
