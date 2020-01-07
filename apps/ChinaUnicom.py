@@ -307,11 +307,9 @@ class ChinaUnicomApp:
         for i in range(1,5):
             getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
             getgame_req = self.session.get(url=getgame_url).json()
-            """
-            if getgame_req['msg'] == '已经达到了今日次数上限啦，不能再玩咯~':
+            if getgame_req['res'] == '0':
                 print(getgame_req['msg'])
                 break
-            """
             game_data = getgame_req['data']
             for key in game_data:
                 game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req['tradeId'] + '&boomId=' + key + '&channelType=10086'
