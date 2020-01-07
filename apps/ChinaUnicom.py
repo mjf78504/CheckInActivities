@@ -326,11 +326,13 @@ class ChinaUnicomApp:
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
         redPacket_req = self.session.get(url=redPacket_url).json()
         print(redPacket_req['msg'])
+        time.sleep(5)
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
         qyhome_msg = self.session.get(url=qyhome_url).json()
         print(qyhome_msg)
+        time.sleep(5)
         # 权益中心签到
         print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
