@@ -318,9 +318,11 @@ class ChinaUnicomApp:
                 game_req = self.session.get(url=game_url).json()
                 if game_req['msg'] == 'success':
                     print('没抽中继续寻宝')
+                    time.sleep(1)
                 else:
                     print(game_req['msg'])
                     break
+            time.sleep(5)
         # 红包雨活动
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
