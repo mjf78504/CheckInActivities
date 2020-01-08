@@ -20,11 +20,11 @@ def unicomCheckin():
     loginFlag, loginContent = unicom.login_CU(mobile, mobilepwd)
     if loginFlag == 1:
         _, signinContent = unicom.signin_CU()
-        _, woTreeContent = unicom.woTree()
+        # _, woTreeContent = unicom.woTree()
         _, woRightContent = unicom.woRight()
     else:
-        signinContent, woTreeContent = '  '
-    mailcontent_CU = loginContent + signinContent + woTreeContent + '\n\n'
+        signinContent = '  '
+    mailcontent_CU = loginContent + signinContent + '\n\n'
     return mailcontent_CU
 
 if __name__=='__main__':
