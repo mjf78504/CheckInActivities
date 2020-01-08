@@ -260,11 +260,11 @@ class ChinaUnicomApp:
         culture_url = 'https://m.client.10010.com/mactivity/arbordayJson/2018051600000009/3/no/useGoods.htm'
         dayWater_url = 'https://m.client.10010.com/mactivity/arbordayJson/arbor/3/0/3/grow.htm'
         watering = self.session.post(url=watering_url, headers=self.headers)
-        wateringStates = watering.json()['addedValue']
+        # wateringStates = watering.json()['addedValue']
         weed = self.session.post(url=weed_url, headers=self.headers)
-        weedStates = weed.json()['addedValue']
+        # weedStates = weed.json()['addedValue']
         deinsec = self.session.post(url=deinsec_url, headers=self.headers)
-        deinsecStates = deinsec.json()['addedValue']
+        # deinsecStates = deinsec.json()['addedValue']
         """
         dayWater = self.session.post(url=dayWater_url, headers=self.headers)
         print('---沃之树每天浇水情况---')
