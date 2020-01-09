@@ -310,8 +310,9 @@ class ChinaUnicomApp:
             if getgame_req['res'] == '0':
                 print(getgame_req['msg'])
                 break
-            game_data = getgame_req['data'].key()
+            game_data = re.search(r'[a-zA-Z0-9]{32}',getgame_req['data']).group()
             gamesf_data = random.shuffle(game_data)
+            print(gamesf_data)
             for key in gamesf_data:
                 game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req['tradeId'] + '&boomId=' + key + '&channelType=10086'
                 game_req = self.session.get(url=game_url).json()
