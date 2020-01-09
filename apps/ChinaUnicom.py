@@ -310,7 +310,7 @@ class ChinaUnicomApp:
             if getgame_req['res'] == '0':
                 print(getgame_req['msg'])
                 break
-            game_data = re.search(r'[a-zA-Z0-9]{32}',getgame_req['data']).group()
+            game_data = re.search(r'[a-zA-Z0-9]{15}',getgame_req['data']).group()
             gamesf_data = random.shuffle(game_data)
             print(gamesf_data)
             for key in gamesf_data:
