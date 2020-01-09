@@ -306,15 +306,15 @@ class ChinaUnicomApp:
         print('---权益中心全民来寻宝游戏情况---')
         for i in range(1,5):
             getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
-            getgame_req = self.session.get(url=getgame_url).json()
-            if getgame_req['res'] == '0':
-                print(getgame_req['msg'])
+            getgame_req = self.session.get(url=getgame_url)
+            if getgame_req.json()['res'] == '0':
+                print(getgame_req.json()['msg'])
                 break
-            game_data = re.search(r'[a-zA-Z0-9]{15}',getgame_req['data']).group()
+            game_data = json.loads(getgame_req)['data'].key()
             gamesf_data = random.shuffle(game_data)
             print(gamesf_data)
             for key in gamesf_data:
-                game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req['tradeId'] + '&boomId=' + key + '&channelType=10086'
+                game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + key + '&channelType=10086'
                 game_req = self.session.get(url=game_url).json()
                 if game_req['msg'] == 'success':
                     print('没抽中继续寻宝')
