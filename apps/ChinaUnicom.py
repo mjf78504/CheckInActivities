@@ -312,6 +312,7 @@ class ChinaUnicomApp:
                 print(getgame_req.json()['msg'])
                 break
             game_data = re.search(r'[a-zA-Z0-9]{15}',getgame_req.text).group()
+            print(game_data)
             gamesf_data = random.shuffle(game_data)
             print(gamesf_data)
             for key in gamesf_data:
