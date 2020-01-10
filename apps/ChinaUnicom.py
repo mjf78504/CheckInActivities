@@ -311,7 +311,7 @@ class ChinaUnicomApp:
             if getgame_req.json()['res'] == '0':
                 print(getgame_req.json()['msg'])
                 break
-            game_data = re.search(r'[a-zA-Z0-9]{15}',getgame_req.text).group()
+            game_data = re.findall(r'[a-zA-Z0-9]{15}',getgame_req.text)
             print(game_data)
             gamesf_data = random.shuffle(game_data)
             print(gamesf_data)
