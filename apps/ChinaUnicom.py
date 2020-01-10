@@ -10,6 +10,7 @@ import requests
 import time
 import random
 import re
+import json
 from base64 import b64encode
 from libs.encrypto import rsa_encrypt_CU,pad_randomstr_CU
 
@@ -310,7 +311,7 @@ class ChinaUnicomApp:
             if getgame_req.json()['res'] == '0':
                 print(getgame_req.json()['msg'])
                 break
-            game_data = json.loads(getgame_req.json()['data']).key()
+            game_data = json.loads(getgame_req)['data'].key()
             gamesf_data = random.shuffle(game_data)
             print(gamesf_data)
             for key in gamesf_data:
