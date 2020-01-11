@@ -312,10 +312,8 @@ class ChinaUnicomApp:
                 print(getgame_req.json()['msg'])
                 break
             game_data = re.findall(r'[a-zA-Z0-9]{15}',getgame_req.text)
-            print(game_data)
-            gamesf_data = random.shuffle(game_data)
-            print(gamesf_data)
-            for key in gamesf_data:
+            random.shuffle(game_data)
+            for key in game_data:
                 game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + key + '&channelType=10086'
                 game_req = self.session.get(url=game_url).json()
                 if game_req['msg'] == 'success':
@@ -329,7 +327,7 @@ class ChinaUnicomApp:
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
         redPacket_req = self.session.get(url=redPacket_url).json()
-        print(redPacket_req['msg'])
+        print(redPacket_req)
         time.sleep(5)
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
