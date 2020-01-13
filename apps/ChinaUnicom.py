@@ -286,9 +286,6 @@ class ChinaUnicomApp:
         print(content)
         return 1, content
 
-    def get_keys(d, value):
-        return [k for k,v in d.items() if v == value]
-
     def woRight(self):
         qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
         qy_data = {
@@ -318,6 +315,8 @@ class ChinaUnicomApp:
             # random.shuffle(game_data)
             endBoom_url = 'https://qy.chinaunicom.cn/mobile/sb/endBoom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId']
             endBoom_req = self.session.get(url=endBoom_url).json()
+            def get_keys(d, value):
+                return [k for k,v in d.items() if v == value]
             luck = str(*get_keys(endBoom_req,1))
             game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + luck + '&channelType=10086'
             game_req = self.session.get(url=game_url).json()
