@@ -286,6 +286,9 @@ class ChinaUnicomApp:
         print(content)
         return 1, content
 
+    def get_keys(d, value):
+        return [k for k,v in d.items() if v == value]
+
     def woRight(self):
         qy_url = 'https://m.client.10010.com/mobileService/openPlatform/openPlatLine.htm?to_url=https://qy.chinaunicom.cn/mobile/auth/index'
         qy_data = {
@@ -305,15 +308,21 @@ class ChinaUnicomApp:
         qylogin_req = self.session.get(url=qy_req)
         # 全民来寻宝
         print('---权益中心全民来寻宝游戏情况---')
-        """
         for i in range(1,5):
             getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
             getgame_req = self.session.get(url=getgame_url)
             if getgame_req.json()['res'] == '0':
                 print(getgame_req.json()['msg'])
                 break
-            game_data = re.findall(r'[a-zA-Z0-9]{15}',getgame_req.text)
-            random.shuffle(game_data)
+            # game_data = re.findall(r'[a-zA-Z0-9]{15}',getgame_req.text)
+            # random.shuffle(game_data)
+            endBoom_url = 'https://qy.chinaunicom.cn/mobile/sb/endBoom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId']
+            endBoom_req = self.session.get(url=endBoom_url).json()
+            luck = str(*get_keys(endBoom_req,1))
+            game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + luck + '&channelType=10086'
+            game_req = self.session.get(url=game_url).json()
+            break
+            """
             for key in game_data:
                 game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + key + '&channelType=10086'
                 game_req = self.session.get(url=game_url).json()
@@ -324,7 +333,7 @@ class ChinaUnicomApp:
                     print(game_req['msg'])
                     break
             time.sleep(5)
-        """
+            """
         # 红包雨活动
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
