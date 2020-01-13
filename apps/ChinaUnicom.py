@@ -311,19 +311,11 @@ class ChinaUnicomApp:
             if getgame_req.json()['res'] == '0':
                 print(getgame_req.json()['msg'])
                 break
-            # game_data = re.findall(r'[a-zA-Z0-9]{15}',getgame_req.text)
-            # random.shuffle(game_data)
-            endBoom_url = 'https://qy.chinaunicom.cn/mobile/sb/endBoom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId']
-            endBoom_req = self.session.get(url=endBoom_url).json()
             def get_keys(d, value):
                 return [k for k,v in d.items() if v == value]
-            luck = str(*get_keys(endBoom_req,1))
-            game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + luck + '&channelType=10086'
-            game_req = self.session.get(url=game_url).json()
-            print(game_req['msg'])
-            break
-            """
-            for key in game_data:
+            luck = get_keys(getgame_req.json()['data'],"0")
+            random.shuffle(luck)
+            for key in luck:
                 game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + key + '&channelType=10086'
                 game_req = self.session.get(url=game_url).json()
                 if game_req['msg'] == 'success':
@@ -333,7 +325,6 @@ class ChinaUnicomApp:
                     print(game_req['msg'])
                     break
             time.sleep(5)
-            """
         # 红包雨活动
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
