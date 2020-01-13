@@ -10,7 +10,6 @@ import requests
 import time
 import random
 import re
-import json
 from base64 import b64encode
 from libs.encrypto import rsa_encrypt_CU,pad_randomstr_CU
 
@@ -323,23 +322,28 @@ class ChinaUnicomApp:
                     time.sleep(1)
                 else:
                     print(game_req['msg'])
+                    for i in range(len(game_req['list'])):
+                        print(game_req['list'][i]['rightName'])
                     break
             time.sleep(5)
         # 红包雨活动
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
         redPacket_req = self.session.get(url=redPacket_url).json()
-        print(redPacket_req)
+        print(redPacket_req['msg'])
+        if redPacket_req['resCode'] == '1':
+            for i in range(len(redPacket_req['data']['list'])):
+                print(redPacket_req['data']['list'][i]['rightName'])
         time.sleep(5)
         # 权益中心首页礼品
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
         qyhome_msg = self.session.get(url=qyhome_url).json()
-        print(qyhome_msg['msg'])
+        print(qyhome_msg)
         time.sleep(5)
         # 权益中心签到
         print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
-        qysign_msg = self.session.get(url=qysign_url).json()['resMsg']
+        qysign_msg = self.session.get(url=qysign_url).json()
         print(qysign_msg)
         return 1, qysign_msg
