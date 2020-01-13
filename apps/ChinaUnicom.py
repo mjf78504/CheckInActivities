@@ -320,6 +320,7 @@ class ChinaUnicomApp:
             luck = str(*get_keys(endBoom_req,1))
             game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + luck + '&channelType=10086'
             game_req = self.session.get(url=game_url).json()
+            print(game_req['msg'])
             break
             """
             for key in game_data:
