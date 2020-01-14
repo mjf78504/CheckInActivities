@@ -340,11 +340,14 @@ class ChinaUnicomApp:
         print('---权益中心首页礼品领取情况---')
         qyhome_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000012802'
         qyhome_msg = self.session.get(url=qyhome_url).json()
-        print(qyhome_msg)
+        print(qyhome_msg['resMsg'])
+        if redPacket_req['resCode'] == '1':
+            for i in range(len(redPacket_req['data']['list'])):
+                print(redPacket_req['data']['list'][i]['rightName'])
         time.sleep(5)
         # 权益中心签到
         print('---权益中心每日签到情况---')
         qysign_url = 'https://qy.chinaunicom.cn/mobile/actsign/checkAccSign'
         qysign_msg = self.session.get(url=qysign_url).json()
-        print(qysign_msg)
+        print(qysign_msg['resMsg'])
         return 1, qysign_msg
