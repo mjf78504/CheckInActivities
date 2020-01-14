@@ -322,8 +322,9 @@ class ChinaUnicomApp:
                     time.sleep(1)
                 else:
                     print(game_req['msg'])
-                    for i in range(len(game_req['list'])):
-                        print(game_req['list'][i]['rightName'])
+                    if game_req['res'] == '20':
+                        for i in range(len(game_req['list'])):
+                            print(game_req['list'][i]['rightName'])
                     break
             time.sleep(5)
         # 红包雨活动
