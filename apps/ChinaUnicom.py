@@ -148,7 +148,7 @@ class ChinaUnicomApp:
             lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=' + usernumberofjsp_search
             for i in range(1,4):
                 lottery_req = self.session.post(url=lottery_url).json()
-                print(lottery_req['RspMsg'])
+                print(lottery_req)
             # 访问访问Weibo获取金币
             print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
@@ -215,7 +215,7 @@ class ChinaUnicomApp:
                 }
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
-                print(sharestatus['desc'])
+                print(sharestatus)
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
