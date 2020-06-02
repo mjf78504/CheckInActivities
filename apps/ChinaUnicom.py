@@ -95,13 +95,13 @@ class ChinaUnicomApp:
             query_url = 'http://act.10010.com/SigninApp/signin/querySigninActivity.htm'
             self.session.get(url=query_url+token, headers=self.headers)
             # 检查是否已签到
-            isSignin_url = 'http://act.10010.com/SigninApp/signin/rewardReminder.do'
+            isSignin_url = 'https://act.10010.com/SigninApp/signin/getIntegral'
             isSignin_req = self.session.post(url=isSignin_url, headers=self.headers)
             # 进行签到/取消签到
             signin_url = 'https://act.10010.com/SigninApp/signin/daySign'
-            if int(isSignin_req.json()['todayIsSignin']):
+            if int(isSignin_req.json()['signedIn']):
                 signin_req = self.session.post(url=signin_url)
-                dailyCoin = signin_req.json()['prizeCount']
+                dailyCoin = signin_req.json()['redEnvelope']
                 print('今日获得金币：' + dailyCoin)
             else:
                 dailyCoin = '今日已签到过'
