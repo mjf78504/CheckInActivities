@@ -224,7 +224,7 @@ class ChinaUnicomApp:
             print('执行后成长值：' + nowgrowthV)
             # 获取签到历史
             print('---签到情况记录---')
-            querySignin_url = 'http://act.10010.com/SigninApp/mySignin/querySignin.do'
+            querySignin_url = 'https://act.10010.com/SigninApp/mySignin/querySignin'
             querySignin_req = self.session.post(url=querySignin_url)
             continuCount = querySignin_req.json()['continuCount']
             signinDateList = ', '.join(querySignin_req.json()['signinDateList'])
