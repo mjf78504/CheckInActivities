@@ -224,19 +224,14 @@ class ChinaUnicomApp:
             margin_req = self.session.post(url=margin_url, data='type=0').json()
             print(margin_req['rspDesc'])
             # 访问每月进行一次余量查询
-            print('---进行一次账单查询获得5个成长值---')
+            print('---每月进行一次账单查询获得5个成长值---')
             margin_url = 'https://m.client.10010.com/mobileService/grow/marginCheck.htm'
             margin_req = self.session.post(url=margin_url, data='type=2').json()
             print(margin_req['rspDesc'])
             # 访问每月进行一次余量查询
-            print('---进行未知成长值获取1---')
+            print('---每月进行一次发票查询获得5个成长值---')
             margin_url = 'https://m.client.10010.com/mobileService/grow/marginCheck.htm'
             margin_req = self.session.post(url=margin_url, data='type=1').json()
-            print(margin_req['rspDesc'])
-            # 访问每月进行一次余量查询
-            print('---进行未知成长值获取3---')
-            margin_url = 'https://m.client.10010.com/mobileService/grow/marginCheck.htm'
-            margin_req = self.session.post(url=margin_url, data='type=3').json()
             print(margin_req['rspDesc'])
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
