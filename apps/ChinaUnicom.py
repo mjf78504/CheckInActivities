@@ -109,7 +109,7 @@ class ChinaUnicomApp:
             # 获取总金币
             gold_url = 'https://act.10010.com/SigninApp/mySignin/getIntegral'
             gold_req = self.session.post(url=gold_url)
-            totalCoin = gold_req.text
+            totalCoin = eval(gold_req.text)
             # 任务测试
             """
             task01_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA395307980'
@@ -148,8 +148,9 @@ class ChinaUnicomApp:
             lottery_url = 'https://m.client.10010.com/dailylottery/static/doubleball/choujiang?usernumberofjsp=' + usernumberofjsp_search
             for i in range(1,4):
                 lottery_req = self.session.post(url=lottery_url).json()
-                print(lottery_req)
+                print(lottery_req['RspMsg'])
             # 访问访问Weibo获取金币
+            """
             print('---访问微博一次获取1个金币(每天一次)---')
             weibo_url = 'https://act.10010.com/signinAppH/commonTask'
             weibo_data = {
@@ -161,6 +162,7 @@ class ChinaUnicomApp:
             }
             # gold_req = self.session.post(url=weibo_url, data=weibo_data)
             # print(gold_req.json()['respMessage'])
+            """
             # 获取执行前成长值
             growth_url = 'https://m.client.10010.com/growthfunction/queryGrowScore.htm'
             oldgrowth_req = self.session.post(url=growth_url)
@@ -216,6 +218,11 @@ class ChinaUnicomApp:
                 share_req = self.session.post(url=share_url, data=share_data)
                 sharestatus = share_req.json()
                 print(sharestatus)
+            # 访问每天进行一次余量查询
+            print('---进行一次余量查询获得2个成长值---')
+            margin_url = 'https://m.client.10010.com/mobileService/grow/marginCheck.htm'
+            margin_req = self.session.post(url=margin_url, data='type=0').json()
+            print(margin_req)
             # 获取执行后成长值
             nowgrowth_req = self.session.post(url=growth_url)
             nowgrowthV = nowgrowth_req.json()['data']['growthV']
