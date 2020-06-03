@@ -107,9 +107,9 @@ class ChinaUnicomApp:
                 dailyCoin = '今日已签到过'
                 print(dailyCoin)
             # 获取总金币
-            gold_url = 'http://act.10010.com/SigninApp/signin/goldTotal.do'
+            gold_url = 'https://act.10010.com/SigninApp/mySignin/getIntegral'
             gold_req = self.session.post(url=gold_url)
-            totalCoin = gold_req.json()#['goldTotal']
+            totalCoin = gold_req.text
             # 任务测试
             """
             task01_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA395307980'
