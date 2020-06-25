@@ -61,14 +61,14 @@ class ChinaUnicomApp:
             'deviceCode': 'EE0D86F7-79C1-42CF-8D63-543EC7F1DCC3',
         }
 
-        login_url = 'http://m.client.10010.com/mobileService/login.htm'
+        login_url = 'https://m.client.10010.com/mobileService/customer/query/getMyUnicomDateTotle.htm'
         # Host 请求尝试次数
         n = 3
         while n:
             try:
                 login_req = self.session.post(login_url, headers=self.headers, data=self.data)
                 print(login_req.text)
-                if login_req.json()['code'] == '0':
+                if login_req.json()['status'] == '0':
                     self.token = self.session.cookies.get('a_token', '')
                     self.areaCode = self.session.cookies.get('u_areaCode', '')
                     content_login = cur_time1 + ' 联通APP签到：\n'
