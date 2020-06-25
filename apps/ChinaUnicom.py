@@ -67,6 +67,7 @@ class ChinaUnicomApp:
         while n:
             try:
                 login_req = self.session.post(login_url, headers=self.headers, data=self.data)
+                print(login_req.text)
                 if login_req.json()['code'] == '0':
                     self.token = self.session.cookies.get('a_token', '')
                     self.areaCode = self.session.cookies.get('u_areaCode', '')
