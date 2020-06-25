@@ -100,6 +100,7 @@ class ChinaUnicomApp:
             # 进行签到/取消签到
             signin_url = 'https://act.10010.com/SigninApp/signin/todaySign'
             AD_url = 'https://act.10010.com/SigninApp/signin/bannerAdPlayingLogo'
+            print('错误：')
             if int(isSignin_req.json()['signedIn']):
                 signin_req = self.session.post(url=signin_url)
                 dailyCoin = signin_req.json()['growValue']
