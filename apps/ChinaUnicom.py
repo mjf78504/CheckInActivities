@@ -99,16 +99,16 @@ class ChinaUnicomApp:
             isSignin_url = 'https://act.10010.com/SigninApp/signin/getIntegral'
             isSignin_req = self.session.post(url=isSignin_url, headers=self.headers)
             # 进行签到/取消签到
-            signin_url = 'https://act.10010.com/SigninApp/signin/todaySign'
+            signin_url = 'https://act.10010.com/SigninApp/signin/daySign'
             AD_url = 'https://act.10010.com/SigninApp/signin/bannerAdPlayingLogo'
             if int(isSignin_req.json()['signedIn']):
                 signin_req = self.session.post(url=signin_url)
-                dailyCoin = signin_req.json()['growValue']
+                dailyCoin = signin_req.json()['growthV']
                 dailyFlower = signin_req.json()['flowerCount']
                 print('今日签到获得金币：' + dailyCoin)
                 print('今日签到获得鲜花：' + dailyFlower)
                 AD_req = self.session.post(url=AD_url)
-                ADCoin = AD_req.json()['growValue']
+                ADCoin = AD_req.json()['growthV']
                 ADFlower = AD_req.json()['flowerCount']
                 print('今日翻倍获得金币：' + ADCoin)
                 print('今日翻倍获得鲜花：' + ADFlower)
