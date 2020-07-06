@@ -119,6 +119,7 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = eval(gold_req.text)
             # 任务测试
+            print(username_CU)
             """
             task01_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA395307980'
             task01_req = self.session.get(url=task01_url)
