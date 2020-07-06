@@ -67,7 +67,6 @@ class ChinaUnicomApp:
         while n:
             try:
                 login_req = self.session.post(login_url, headers=self.headers, data=self.data)
-                print(login_req.text)
                 if login_req.json()['code'] == '0':
                     self.token = self.session.cookies.get('a_token', '')
                     self.areaCode = self.session.cookies.get('u_areaCode', '')
@@ -92,19 +91,15 @@ class ChinaUnicomApp:
             self.headers['Host'] = 'act.10010.com'
             # cookie = self.session.cookies
             token = '?token=' + self.session.cookies.get('a_token', '')
-            print('错误0：')
             # 进入每日签到活动, cookies=self.session.cookies
             query_url = 'http://act.10010.com/SigninApp/signin/querySigninActivity.htm'
             self.session.get(url=query_url+token, headers=self.headers)
-            print('错误1：')
             # 检查是否已签到
             isSignin_url = 'https://act.10010.com/SigninApp/signin/getIntegral'
             isSignin_req = self.session.post(url=isSignin_url, headers=self.headers)
-            print('错误2：')
             # 进行签到/取消签到
             signin_url = 'https://act.10010.com/SigninApp/signin/todaySign'
             AD_url = 'https://act.10010.com/SigninApp/signin/bannerAdPlayingLogo'
-            print('错误3：')
             if int(isSignin_req.json()['signedIn']):
                 signin_req = self.session.post(url=signin_url)
                 dailyCoin = signin_req.json()['growValue']
