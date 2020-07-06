@@ -60,6 +60,7 @@ class ChinaUnicomApp:
             'keyVersion': '1',
             'deviceCode': 'EE0D86F7-79C1-42CF-8D63-543EC7F1DCC3',
         }
+        print(username_CU)
 
         login_url = 'https://m.client.10010.com/mobileService/login.htm'
         # Host 请求尝试次数
@@ -119,7 +120,6 @@ class ChinaUnicomApp:
             gold_req = self.session.post(url=gold_url)
             totalCoin = eval(gold_req.text)
             # 任务测试
-            print(username_CU)
             """
             task01_url = 'https://act.10010.com/SigninApp/task/taskQuantityAccumulative.do?taskCode=TA395307980'
             task01_req = self.session.get(url=task01_url)
