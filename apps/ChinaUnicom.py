@@ -328,6 +328,7 @@ class ChinaUnicomApp:
             'ecsTicket': ticket,
         }
         qyrm_cookies = self.session.post(url='https://qy.chinaunicom.cn/mobile/auth/auth', data=rm_data)
+        print(qyrm_cookies.text) 
         qylogin_req = self.session.get(url=qy_req)
         # 全民来寻宝
         """
