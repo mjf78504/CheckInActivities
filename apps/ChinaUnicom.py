@@ -341,7 +341,7 @@ class ChinaUnicomApp:
             luck = get_keys(getgame_req.json()['data'],"0")
             random.shuffle(luck)
             for key in luck:
-                game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + key + '&channelType=10086'
+                game_url = 'https://qy.chinaunicom.cn/mobile/sb/findingboom?countParam={}&actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&tradeId=' + getgame_req.json()['tradeId'] + '&boomId=' + key + '&channelType=10086'
                 game_req = self.session.get(url=game_url).json()
                 if game_req['msg'] == 'success':
                     print('没抽中继续寻宝')
