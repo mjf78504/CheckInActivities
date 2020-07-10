@@ -363,7 +363,7 @@ class ChinaUnicomApp:
         print('---权益中心红包雨活动情况---')
         redPacket_url = 'https://qy.chinaunicom.cn/mobile/lottery/doLo?actId=1000000000089605&score=' + str(random.randint(60,130)) + '&type='
         redPacket_req = self.session.get(url=redPacket_url).json()
-        print(redPacket_req['msg'])
+        print(redPacket_req)
         if redPacket_req['resCode'] == '1':
             for i in range(len(redPacket_req['data']['list'])):
                 print(redPacket_req['data']['list'][i]['rightName'])
