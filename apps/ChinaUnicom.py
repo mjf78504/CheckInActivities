@@ -319,6 +319,7 @@ class ChinaUnicomApp:
             'version': 'android@7.0100',
         }
         qy_req = self.session.post(url=qy_url, data=qy_data, allow_redirects=False).headers['Location']
+        print(qy_req) 
         self.session.cookies.clear()
         account_url = 'https://qy.chinaunicom.cn/mobile/auth/getAccountByCookie'
         qyid_cookies = self.session.get(url=account_url)
