@@ -108,7 +108,7 @@ class ChinaUnicomApp:
                 print('今日签到获得金币：' + dailyCoin)
                 print('今日签到获得鲜花：' + dailyFlower)
                 AD_req = self.session.post(url=AD_url)
-                ADCoin = AD_req.json()['growthV']
+                ADCoin = AD_req.json()['growValue']
                 ADFlower = AD_req.json()['flowerCount']
                 print('今日翻倍获得金币：' + ADCoin)
                 print('今日翻倍获得鲜花：' + ADFlower)
