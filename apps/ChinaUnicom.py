@@ -333,6 +333,7 @@ class ChinaUnicomApp:
         for i in range(1,5):
             getgame_url = 'https://qy.chinaunicom.cn/mobile/sb/startfind?actId=86DFB114DF454D389B0AB2E18A730C99C5F56031D8DF9115&channelType=10086'
             getgame_req = self.session.get(url=getgame_url)
+            print(getgame_req.text)
             if getgame_req.json()['res'] == '0':
                 print('---权益中心全民来寻宝游戏情况---')
                 print(getgame_req.json()['msg'])
